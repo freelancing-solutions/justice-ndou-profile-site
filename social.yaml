@@ -1,0 +1,3 @@
+handlers:
+- url: /social/.*
+  script: social.app

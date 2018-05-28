@@ -1,0 +1,3 @@
+handlers:
+- url: /profiles/.*
+  script: profiles.app
