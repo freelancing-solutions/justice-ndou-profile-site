@@ -1,11 +1,11 @@
   // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyCeSBAHvyUs12TkilAJJA2Hq8exbXdv3jI",
-  authDomain: "easy-hosting.firebaseapp.com",
-  databaseURL: "https://easy-hosting.firebaseio.com",
-  projectId: "easy-hosting",
-  storageBucket: "https://easy-hosting.appspot.com",
-  messagingSenderId: "321876361624"
+  apiKey: "AIzaSyAjcO6wmvJ29XNZrw50hFRLyXzkpN6GHL0",
+  authDomain: "justice-ndou.firebaseapp.com",
+  databaseURL: "https://justice-ndou.firebaseio.com",
+  projectId: "justice-ndou",
+  storageBucket: "justice-ndou.appspot.com",
+  messagingSenderId: "956700057603"
 
   };
 if (!firebase.apps.length) {
