@@ -17,7 +17,7 @@ if (!firebase.apps.length) {
 }catch (err){
 }
   var uiConfig = {
-	signInSuccessUrl: 'https://easyhosting.site',
+	signInSuccessUrl: 'https://justicendou.site',
 	signInOptions: [
 	  // Leave the lines as is for the providers you want to offer your users.
 		firebase.auth.EmailAuthProvider.PROVIDER_ID,

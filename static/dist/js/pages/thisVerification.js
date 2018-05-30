@@ -5,12 +5,13 @@
 try{
 var config =
 {
-  apiKey: "AIzaSyAjcO6wmvJ29XNZrw50hFRLyXzkpN6GHL0",
-  authDomain: "justice-ndou.firebaseapp.com",
-  databaseURL: "https://justice-ndou.firebaseio.com",
-  projectId: "justice-ndou",
-  storageBucket: "justice-ndou.appspot.com",
-  messagingSenderId: "3221236137"
+    apiKey: "AIzaSyAjcO6wmvJ29XNZrw50hFRLyXzkpN6GHL0",
+    authDomain: "justice-ndou.firebaseapp.com",
+    databaseURL: "https://justice-ndou.firebaseio.com",
+    projectId: "justice-ndou",
+    storageBucket: "justice-ndou.appspot.com",
+    messagingSenderId: "956700057603"
+
 };
 if (!firebase.apps.length) {
     firebase.initializeApp(config);
