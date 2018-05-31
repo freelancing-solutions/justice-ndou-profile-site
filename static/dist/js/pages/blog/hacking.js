@@ -22,14 +22,14 @@ const this_month = now.getMonth();
 const this_day = now.getDay();
 const this_date = this_year + "-" + this_month + "-" + this_day;
 
-const thisTopics = "Physics OR Nanotechnolodgy OR Space Exploration OR Advanced Physics OR Astronomy OR Mechanical Engineering OR Chemical Engineering OR Biotech" 
+const thisTopics = '"CyberAttacks" OR "Hacking Tools" OR "Linux" OR "Kali Linux" OR "Hacking" OR "Penetration Testing Algorithms" OR "Botnets" OR "Botnet Mining" OR  "Hackers" OR "Penetration Testing" OR "DDOS" OR "Networking" OR "State Sponsored Hacking"';
 
 //window.addEventListener('load', e =>{
 //updateNews();
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
 
 async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize=25&sortBy=publishedAt,relevancy,popularity&from='+this_date+'&apiKey='+apiKey);
+    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize=50&sortBy=publishedAt,relevancy,popularity&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
     main.innerHTML = json.articles.map(createArticle).join('\n');
 }

@@ -74,6 +74,20 @@ document.getElementById('mathematicsid').addEventListener("click", function () {
         });
 });
 
+
+document.getElementById('hackerid').addEventListener("click", function () {
+    $.ajax({
+         type: "get",
+         url: "/blog/hacking",
+         data: "",
+         cache: true,
+         success: function (html) {
+             $('#mainbodyinfdiv').html(html)
+         }
+     });
+});
+
+
 // social media links
 
 document.getElementById('facebookid').addEventListener("click", function () {
@@ -145,13 +159,18 @@ const advertCode = `
 `
 
 const main = document.querySelector('main');
+const now = new Date();
+const this_year = now.getFullYear();
+const this_month = now.getMonth();
+const this_day = now.getDay();
+const this_date = this_year + "-" + this_month + "-" + this_day;
 
 //window.addEventListener('load', e =>{
 //updateNews();
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
 
 async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q="freelance" OR "cryptocurrency" OR "crypto Mining" OR "bitcoin" OR "Python27 Development" or "Python27 Developers" OR "Google Cloud" OR "AI" or "Artificial Intelligence"&pageSize=25&sortBy=publishedAt,relevancy, popularity&apiKey='+apiKey);
+    const res = await fetch('https://newsapi.org/v2/everything?q="freelance" OR "cryptocurrency" OR "crypto-coins" OR "Crypto-Currency"  OR "crypto Mining" OR "bitcoin" OR "Python27 Development" or "Python27 Developers" OR "Google Cloud" OR "AI" or "Artificial Intelligence"&pageSize=25&sortBy=publishedAt,relevancy,popularity&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
     main.innerHTML = json.articles.map(createArticle).join('\n');
 }
@@ -169,6 +188,9 @@ function createArticle(article){
     <div class="polatext">    
      ${article.description}
     </div>
+    <div class="polatext">
+        ${advertCode}
+    </div>    
 </div>
 
 </div>

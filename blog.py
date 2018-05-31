@@ -39,6 +39,12 @@ class BlogHandler(webapp2.RequestHandler):
             context = {}
             self.response.write(template.render(context))
 
+        elif this_url == "hacking":
+            template = template_env.get_template('templates/justice-ndou/blog/categories/hacking/hacking.html')
+            context = {}
+            self.response.write(template.render(context))
+
+
 
 
 app = webapp2.WSGIApplication([

@@ -35,6 +35,7 @@ const staticAssets = [
     '/static/dist/css/ionicons.min.css',
     '/static/dist/css/AdminLTE.min.css',
     '/static/dist/css/skins/skin-blue.min.css',
+    '/static/dist/css/blog.css',
     '/static/plugins/jQuery/jquery-2.2.3.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
     '/static/plugins/slimScroll/jquery.slimscroll.min.js',
