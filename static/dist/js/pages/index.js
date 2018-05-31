@@ -125,3 +125,54 @@ document.getElementById('youtubeid').addEventListener("click", function () {
             }
         });
 });
+
+
+// use this get request https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=3b2be7ef781441f4bde537854ffff2bf
+const apiKey = '3b2be7ef781441f4bde537854ffff2bf';
+
+const advertCode = `
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-fb+5w+4e-db+86"
+     data-ad-client="ca-pub-7790567144101692"
+     data-ad-slot="7246754264"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+`
+
+const main = document.querySelector('main');
+
+//window.addEventListener('load', e =>{
+//updateNews();
+//}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
+
+async function updateNews(){
+    const res = await fetch('https://newsapi.org/v2/everything?q="freelance" OR "cryptocurrency" OR "crypto Mining" OR "bitcoin" OR "Python27 Development" or "Python27 Developers" OR "Google Cloud" OR "AI" or "Artificial Intelligence"&pageSize=25&sortBy=publishedAt,relevancy, popularity&apiKey='+apiKey);
+    const json = await res.json();
+    main.innerHTML = json.articles.map(createArticle).join('\n');
+}
+
+function createArticle(article){
+    return `
+<div class="box box-body with-border">
+    <div class="box box-header with-border">
+        <a href="${article.url}">
+            <h2 class="box-title">${article.title}</h2>
+        </a>   
+    </div>
+<div class="polaroid">
+    <img src="${article.urlToImage}" style="width:100%">
+    <div class="polatext">    
+     ${article.description}
+    </div>
+</div>
+
+</div>
+
+    `;
+}
+updateNews();
