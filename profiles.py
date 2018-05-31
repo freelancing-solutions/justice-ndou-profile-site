@@ -10,15 +10,15 @@ template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd()))
 
 
 class ProfilesHandler(webapp2.RequestHandler):
+
     def get(self):
-        pass
-
-    def post(self):
-
 
         request_url = self.request.uri
+        request_url = request_url.split('?')
+        request_url = request_url[0]
         request_url_list = request_url.split("/")
         this_url = request_url_list[len(request_url_list) - 1]
+        logging.info(this_url)
 
         if this_url == "software-projects":
             template = template_env.get_template('templates/justice-ndou/personal-profile/software-projects/software-projects.html')

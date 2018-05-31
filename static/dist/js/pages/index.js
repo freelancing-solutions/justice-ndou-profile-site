@@ -3,10 +3,10 @@
 
 document.getElementById('softwareprojectslinkid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/profiles/software-projects",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -15,10 +15,10 @@ document.getElementById('softwareprojectslinkid').addEventListener("click", func
 
 document.getElementById('linkedinprofileid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/profiles/linkedin",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -29,10 +29,10 @@ document.getElementById('linkedinprofileid').addEventListener("click", function 
 
 document.getElementById('programmingid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/blog/programming",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -41,10 +41,10 @@ document.getElementById('programmingid').addEventListener("click", function () {
 
 document.getElementById('scienceid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/blog/science",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -53,10 +53,10 @@ document.getElementById('scienceid').addEventListener("click", function () {
 
 document.getElementById('philosophyid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/blog/philosophy",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -64,10 +64,10 @@ document.getElementById('philosophyid').addEventListener("click", function () {
 });
 document.getElementById('mathematicsid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/blog/mathematics",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -78,10 +78,10 @@ document.getElementById('mathematicsid').addEventListener("click", function () {
 
 document.getElementById('facebookid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/social/facebook",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -90,10 +90,10 @@ document.getElementById('facebookid').addEventListener("click", function () {
 //googleid
 document.getElementById('googleid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/social/google",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -102,35 +102,24 @@ document.getElementById('googleid').addEventListener("click", function () {
 // twitterid
 document.getElementById('twitterid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/social/twitter",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
         });
 });
 
-document.getElementById('twitterid').addEventListener("click", function () {
-       $.ajax({
-            type: "post",
-            url: "/social/twitter",
-            data: "",
-            cache: false,
-            success: function (html) {
-                $('#mainbodyinfdiv').html(html)
-            }
-        });
-});
 
 //youtubeid
 document.getElementById('youtubeid').addEventListener("click", function () {
        $.ajax({
-            type: "post",
+            type: "get",
             url: "/social/youtube",
             data: "",
-            cache: false,
+            cache: true,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }

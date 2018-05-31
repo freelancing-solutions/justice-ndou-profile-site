@@ -18,6 +18,11 @@ handlers:
 - url: /static
   static_dir: static
 
+- url: /sw.js
+  static_files: static/dist/js/serviceworker/sw.js
+  upload: static/dist/js/serviceworker/sw.js
+  expiration: 0m
+
 - url: /
   script: main.app
 

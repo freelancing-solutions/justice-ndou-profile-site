@@ -62,16 +62,8 @@ class MainRouterHandler(webapp2.RequestHandler):
         context = {}
         self.response.write(template.render(context))
 
-    def RouteFAQ(self):
 
-        template = template_env.get_template('templates/faq/faq.html')
-        context = {}
-        self.response.write(template.render(context))
 
-    def RoutePricing(self):
-        template = template_env.get_template('templates/pricing/pricing.html')
-        context = {}
-        self.response.write(template.render(context))
 
     def RouteAbout(self):
         template = template_env.get_template('templates/about.html')
@@ -83,25 +75,7 @@ class MainRouterHandler(webapp2.RequestHandler):
         context = {}
         self.response.write(template.render(context))
 
-    def RouteDomain(self):
-        template = template_env.get_template('templates/domains/domains.html')
-        context = {}
-        self.response.write(template.render(context))
 
-    def RouteAccount(self):
-        template = template_env.get_template('templates/account/account.html')
-        context = {}
-        self.response.write(template.render(context))
-
-    def RoutePricing(self):
-        template = template_env.get_template('templates/pricing/pricing.html')
-        context = {}
-        self.response.write(template.render(context))
-
-    def RouteFaq(self):
-        template = template_env.get_template('templates/faq/faq.html')
-        context = {}
-        self.response.write(template.render(context))
 
     def Route404(self):
         template = template_env.get_template('templates/404.html')
@@ -188,11 +162,6 @@ class MainRouterHandler(webapp2.RequestHandler):
             #TODO - Refine this part
 
 
-    def RouteServiceAccount(self):
-        template = template_env.get_template('templates/firebase/service_account.json')
-        context = {}
-        self.response.write(template.render(context))
-
     def get(self):
         """
             The Main Get Router entry point
@@ -215,14 +184,11 @@ class MainRouterHandler(webapp2.RequestHandler):
             elif ("logout" in strURLlist) or ("logout.html" in strURLlist) or ("signout" in strURLlist) or ("signout.html" in strURLlist):
                 self.RouteLogout()
 
-            elif ("faq" in strURLlist) or ("faq.html" in strURLlist):
-                self.RouteFAQ()
 
-            elif ("pricing" in strURLlist) or ("pricing.html" in strURLlist):
-                self.RoutePricing()
 
             elif "sitemap.xml" in strURLlist:
                 self.RouteSitemap()
+
             elif "robots.txt" in strURLlist:
                 self.RouteRobots()
 
@@ -232,14 +198,8 @@ class MainRouterHandler(webapp2.RequestHandler):
             elif ("contact" in strURLlist) or ("contact.html" in strURLlist):
                 self.RouteContact()
 
-            elif ("domains" in strURLlist) or ("domains.html" in strURLlist):
-                self.RouteDomain()
 
-            elif ("account" in strURLlist) or("account.html" in strURLlist):
-                self.RouteAccount()
 
-            elif ("pricing" in strURLlist) or("pricing.html" in strURLlist):
-                self.RoutePricing()
 
             elif ("faq" in strURLlist) or ("faq.html" in strURLlist):
                 self.RouteFAQ()
