@@ -188,9 +188,6 @@ function createArticle(article){
     <div class="polatext">    
      ${article.description}
     </div>
-    <div class="polatext">
-        ${advertCode}
-    </div>    
 </div>
 
 </div>
@@ -198,3 +195,4 @@ function createArticle(article){
     `;
 }
 updateNews();
+document.getElementById('mainadvertcode').innerHTML = advertCode;
