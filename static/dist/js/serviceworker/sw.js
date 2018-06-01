@@ -40,8 +40,6 @@ const staticAssets = [
     '/static/bootstrap/js/bootstrap.min.js',
     '/static/plugins/slimScroll/jquery.slimscroll.min.js',
     '/static/plugins/fastclick/fastclick.min.js',
-
-
 ];
 
 self.addEventListener('install', async event => {
@@ -62,7 +60,6 @@ self.addEventListener('fetch', event => {
     }else{
         event.respondWith(networkFirst(req));
     }
-
 });
 
 async function cacheFirst(req) {
