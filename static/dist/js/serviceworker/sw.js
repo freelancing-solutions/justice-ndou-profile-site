@@ -45,8 +45,13 @@ const staticAssets = [
 ];
 
 self.addEventListener('install', async event => {
-    const cache = await caches.open('justice-ndou');
-    cache.addAll(staticAssets);
+    event.waitUntil(
+        caches.open('justice-ndou').then(cache =>{
+            return cache.addAll(staticAssets);
+        }).then(() => {
+            return self.skipWaiting();
+        })
+    );
 });
 
 self.addEventListener('fetch', event => {
