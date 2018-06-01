@@ -177,21 +177,20 @@ async function updateNews(){
 
 function createArticle(article){
     return `
-<div class="box box-body with-border">
-    <div class="box box-header with-border">
-        <a href="${article.url}">
-            <h2 class="box-title">${article.title}</h2>
-        </a>   
-    </div>
-<div class="polaroid">
-    <img src="${article.urlToImage}" style="width:100%">
-    <div class="polatext">    
-     ${article.description}
-    </div>
-</div>
+            <div class="box box-body with-border">
+                <div class="box box-header with-border">
+                    <a href="${article.url}">
+                        <h2 class="box-title">${article.title}</h2>
+                    </a>   
+                </div>
+            <div class="polaroid">
+                <img src="${article.urlToImage}" style="width:100%">
+                <div class="polatext">    
+                ${article.description}
+                </div>
+            </div>
 
-</div>
-
+            </div>
     `;
 }
 updateNews();
