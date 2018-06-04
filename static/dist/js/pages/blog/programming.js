@@ -21,6 +21,7 @@ const this_year = now.getFullYear();
 const this_month = now.getMonth();
 const this_day = now.getDay();
 const this_date = this_year + "-" + this_month + "-" + this_day;
+const this_pagesize = 25;
 const thisTopic = '"Programming" OR "Python Algorithms" OR "Algorithms" OR "AI Algorithms" OR "Advanced Algorithms"  OR "Cryptographic Algorithms" OR "Javascript" OR "Python27" OR "HTML5" OR "CSS3" OR "Jquery" OR "Jinja2" OR "Jinja-Templating" OR "Google App Engine" OR "Google App Engine"'
 
 // Python27, Javascript, HTML5, CSS3, Jinja-Templating, Google App Engine and Google Cloud Platform
@@ -29,7 +30,7 @@ const thisTopic = '"Programming" OR "Python Algorithms" OR "Algorithms" OR "AI A
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
 
 async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopic+'&pageSize=25&sortBy=publishedAt,relevancy,popularity&from='+this_date+'&apiKey='+apiKey);
+    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopic+'&pageSize='+ this_pagesize +'&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
     main.innerHTML = json.articles.map(createArticle).join('\n');
 }
@@ -40,11 +41,11 @@ function createArticle(article){
     <div class="box box-header with-border">
         <a href="${article.url}">
             <h2 class="box-title">${article.title}</h2>
-        </a>   
+        </a>
     </div>
 <div class="polaroid">
     <img src="${article.urlToImage}" style="width:100%">
-    <div class="polatext">    
+    <div class="polatext">
      ${article.description}
     </div>
 </div>

@@ -31,6 +31,7 @@ class OpenInvites(ndb.Expando):
                 return False
         except:
             return False
+
     def writeCell(self,strinput):
         try:
             strinput = str(strinput)

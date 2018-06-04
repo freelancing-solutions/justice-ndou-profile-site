@@ -62,9 +62,6 @@ class MainRouterHandler(webapp2.RequestHandler):
         context = {}
         self.response.write(template.render(context))
 
-
-
-
     def RouteAbout(self):
         template = template_env.get_template('templates/about.html')
         context = {}

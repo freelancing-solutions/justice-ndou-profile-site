@@ -1,7 +1,15 @@
 
 //profiles
+const this_menuitems = document.getElementsByName('menuitems');
+function clearActive() {
+    for (i = 0; i < this_menuitems.length; i++) {
+        this_menuitems[i].classList.remove("active");
 
+    }
+}
 document.getElementById('softwareprojectslinkid').addEventListener("click", function () {
+       clearActive();
+       this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/profiles/software-projects",
@@ -12,8 +20,25 @@ document.getElementById('softwareprojectslinkid').addEventListener("click", func
             }
         });
 });
+//
+document.getElementById('servicesid').addEventListener("click", function () {
+       clearActive();
+       this.classList.add("active");
+       $.ajax({
+            type: "get",
+            url: "/profiles/services",
+            data: "",
+            cache: true,
+            success: function (html) {
+                $('#mainbodyinfdiv').html(html)
+            }
+        });
+});
+
 
 document.getElementById('linkedinprofileid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/profiles/linkedin",
@@ -28,6 +53,8 @@ document.getElementById('linkedinprofileid').addEventListener("click", function 
 // blog
 
 document.getElementById('programmingid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/blog/programming",
@@ -40,6 +67,9 @@ document.getElementById('programmingid').addEventListener("click", function () {
 });
 
 document.getElementById('scienceid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
+
        $.ajax({
             type: "get",
             url: "/blog/science",
@@ -52,6 +82,8 @@ document.getElementById('scienceid').addEventListener("click", function () {
 });
 
 document.getElementById('philosophyid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/blog/philosophy",
@@ -63,6 +95,8 @@ document.getElementById('philosophyid').addEventListener("click", function () {
         });
 });
 document.getElementById('mathematicsid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/blog/mathematics",
@@ -76,6 +110,8 @@ document.getElementById('mathematicsid').addEventListener("click", function () {
 
 
 document.getElementById('hackerid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
     $.ajax({
          type: "get",
          url: "/blog/hacking",
@@ -91,6 +127,8 @@ document.getElementById('hackerid').addEventListener("click", function () {
 // social media links
 
 document.getElementById('facebookid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/social/facebook",
@@ -103,6 +141,8 @@ document.getElementById('facebookid').addEventListener("click", function () {
 });
 //googleid
 document.getElementById('googleid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/social/google",
@@ -115,6 +155,8 @@ document.getElementById('googleid').addEventListener("click", function () {
 });
 // twitterid
 document.getElementById('twitterid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/social/twitter",
@@ -125,10 +167,27 @@ document.getElementById('twitterid').addEventListener("click", function () {
             }
         });
 });
+//quoraid
+document.getElementById('quoraid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
+       $.ajax({
+            type: "get",
+            url: "/social/quora",
+            data: "",
+            cache: true,
+            success: function (html) {
+                $('#mainbodyinfdiv').html(html)
+            }
+        });
+});
+
 
 
 //youtubeid
 document.getElementById('youtubeid').addEventListener("click", function () {
+    clearActive();
+    this.classList.add("active");
        $.ajax({
             type: "get",
             url: "/social/youtube",
@@ -141,22 +200,13 @@ document.getElementById('youtubeid').addEventListener("click", function () {
 });
 
 
+
+
+// TODO- use google api for news and any other available API's to populate our blog upon launch,
+// TODO- blog pages must be summaries with links to the original article///
+
 // use this get request https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=3b2be7ef781441f4bde537854ffff2bf
 const apiKey = '3b2be7ef781441f4bde537854ffff2bf';
-
-const advertCode = `
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-7790567144101692"
-     data-ad-slot="7246754264"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-`
 
 const main = document.querySelector('main');
 const now = new Date();
@@ -164,34 +214,37 @@ const this_year = now.getFullYear();
 const this_month = now.getMonth();
 const this_day = now.getDay();
 const this_date = this_year + "-" + this_month + "-" + this_day;
+const this_pagesize = 50;
+const thisTopics = '"CyberAttacks" OR "Hacking Tools" OR "Linux" OR "Kali Linux" OR "Hacking" OR "Penetration Testing Algorithms" OR "Botnets" OR "Botnet Mining" OR  "Hackers" OR "Penetration Testing" OR "DDOS" OR "Networking" OR "State Sponsored Hacking" OR "Maths" OR "Mathematics in Programming" OR "Mathematics" OR "Numerical Algorithms" OR "Graph Theory"  OR "Cryptography" OR "Numerical Analysis" OR "Theory of Everything" OR "Number Theory" OR "Combinatorials" OR "Programming" OR "Python Algorithms" OR "Algorithms" OR "AI Algorithms" OR "Advanced Algorithms"  OR "Cryptographic Algorithms" OR "Javascript" OR "Python27" OR "HTML5" OR "CSS3" OR "Jquery" OR "Jinja2" OR "Jinja-Templating" OR "Google App Engine" OR "Google App Engine" OR "Physics" OR "Nanotechnolodgy" OR "Space Exploration" OR "Advanced Physics" OR "Astronomy" OR "Mechanical Engineering" OR "Chemical Engineering" OR "Biotech"';
 
 //window.addEventListener('load', e =>{
 //updateNews();
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
 
 async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q="freelance" OR "cryptocurrency" OR "crypto-coins" OR "Crypto-Currency"  OR "crypto Mining" OR "bitcoin" OR "Python27 Development" or "Python27 Developers" OR "Google Cloud" OR "AI" or "Artificial Intelligence"&pageSize=25&sortBy=publishedAt,relevancy,popularity&from='+this_date+'&apiKey='+apiKey);
+    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+ this_pagesize +'&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
     main.innerHTML = json.articles.map(createArticle).join('\n');
+
 }
 
 function createArticle(article){
     return `
-            <div class="box box-body with-border">
-                <div class="box box-header with-border">
-                    <a href="${article.url}">
-                        <h2 class="box-title">${article.title}</h2>
-                    </a>   
-                </div>
-            <div class="polaroid">
-                <img src="${article.urlToImage}" style="width:100%">
-                <div class="polatext">    
-                ${article.description}
-                </div>
-            </div>
+<div class="box box-body with-border">
+    <div class="box box-header with-border">
+        <a href="${article.url}">
+            <h3 class="box-title">${article.title}</h3>
+        </a>
+    </div>
+<div class="polaroid">
+    <img src="${article.urlToImage}" style="width:100%">
+    <div class="polatext">
+     ${article.description}
+    </div>
+</div>
 
-            </div>
+</div>
+
     `;
 }
 updateNews();
-document.getElementById('mainadvertcode').innerHTML = advertCode;

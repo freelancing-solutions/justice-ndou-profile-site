@@ -1,0 +1,6 @@
+
+
+handlers:
+
+- url: /services
+  script: services.app

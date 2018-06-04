@@ -38,6 +38,11 @@ class SocialHandler(webapp2.RequestHandler):
             context = {}
             self.response.write(template.render(context))
 
+        elif this_url == "quora":
+            template = template_env.get_template('templates/justice-ndou/social/quora.html')
+            context = {}
+            self.response.write(template.render(context))
+
 
 app = webapp2.WSGIApplication([
     ('/social/.*', SocialHandler),

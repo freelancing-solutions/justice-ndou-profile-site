@@ -6,6 +6,7 @@ threadsafe: yes
 includes:
 
 - nav.yaml
+- services.yaml
 - contact.yaml
 - profiles.yaml
 - blog.yaml
