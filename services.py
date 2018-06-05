@@ -139,6 +139,20 @@ class HireMe(ndb.Expando):
         except:
             return False
 
+    def write_project_title(self,project_title):
+        try:
+            project_title = str(project_title)
+            project_title = project_title.strip()
+            if (project_title != None):
+                self.project_title = project_title
+                return True
+            else:
+                return False
+            
+        except:
+            return False
+                    
+
     def write_project_description(self,project_description):
         try:
             project_description = str(project_description)
@@ -162,21 +176,49 @@ class ServicesHandler(webapp2.RequestHandler):
             cell = self.request.get('cell')
             email = self.request.get('email')
             website = self.request.get('website')
-            facebook = self.request.get('facebook')
-            twitter = self.request.get('twitter')
+            facebook = self.request.get('myfacebook')
+            twitter = self.request.get('mytwitter')
             company = self.request.get('company')
             freelancing = self.request.get('freelancing')
-            project_type = self.request.get('project-type')
-            project_title = self.request.get('project-title')
-            project_description = self.request.get('project-description')
+            project_type = self.request.get('projecttype')
+            project_title = self.request.get('projecttitle')
+            project_description = self.request.get('projectdescription')
+
+            logging.info("services handler received all variables")
+
+            #//TODO- please do error corrections within the browser using javascript
+
+            this_hireme = HireMe()
+
+            if this_hireme.write_names(names=names) == False:
+                self.response.write("Please enter correct Names")
+            elif this_hireme.write_cell(cell=cell) == False:
+                self.response.write("Please enter a valid cell phone Number")
+            elif this_hireme.write_email(email=email) == False:
+                self.response.write("Please enter a valid email address")
+            elif this_hireme.write_website(website=website) == False:
+                self.response.write("Please enter a valid website address")
+            elif this_hireme.write_company(company=company) == False:
+                self.response.write("Please enter a valid company name")
+            elif this_hireme.write_project_type(project_type=project_type) == False:
+                self.response.write("Please enter a valid project type")
+            elif this_hireme.write_project_title(project_title=project_title) == False:
+                self.response.write("Please enter a valid project title")
+            elif this_hireme.write_project_description(project_description=project_description) == False:
+                self.response.write("Please enter a valid project description")
+
+            else:
+                this_hireme.write_facebook(facebook=facebook)
+                this_hireme.write_twitter(twitter=twitter)
+                this_hireme.write_freelancing(freelancing=freelancing)
+                this_hireme.put()
+                self.response.write("Successfuly created your request i will get back to you as soon as possible")
+                
         except:
-            pass
+            self.response.write("an error occured creating a hireme request")
 
 
 
 app = webapp2.WSGIApplication([
-    ('/services', ServicesHandler),
-
-
-
+    ('/services', ServicesHandler)
 ], debug=True)

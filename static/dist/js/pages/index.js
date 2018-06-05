@@ -247,4 +247,5 @@ function createArticle(article){
 
     `;
 }
+
 updateNews();

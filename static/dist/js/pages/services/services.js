@@ -2,9 +2,9 @@ const hireme_fields = document.getElementsByName('hireme');
 function verify(){
     for (i = 0; i < hireme_fields.length; i++){
         if ((hireme_fields[i].value === null) || (hireme_fields[i].value === "")){
-            return false;
+            return false
         } else{
-            return true;
+            return true
         }
     }
 }
@@ -18,17 +18,17 @@ document.getElementById('hiremesend').addEventListener("click", function () {
         const cell = document.getElementById('cellid').value;
         const email = document.getElementById('emailid').value;
         const website = document.getElementById('websiteid').value;
-        const facebook = document.getElementById('facebookid').value;
-        const twitter = document.getElementById('twitterid').value;
+        const myfacebook = document.getElementById('facebookid').value;
+        const mytwitter = document.getElementById('twitterid').value;
         const company = document.getElementById('companyid').value;
         const freelancing = document.getElementById('freelancingid').value;
         const project_type = document.getElementById('projecttypeid').value;
         const project_title = document.getElementById('projecttitleid').value;
         const project_description = document.getElementById('projectdescriptionid').value;
 
-        const form_data = '&names=' + names + '&cell=' + cell + '&email=' + email + '&website=' + website + '&facebook=' + facebook +
-            '&twitter=' + twitter + '&company=' + company + '&freelancing=' + freelancing + '&project-type=' + project_type +
-            '&project-title=' + project_title + '&project-description=' + project_description;
+        const form_data = '&names=' + names + '&cell=' + cell + '&email=' + email + '&website=' + website + '&myfacebook=' + myfacebook +
+            '&mytwitter=' + mytwitter + '&company=' + company + '&freelancing=' + freelancing + '&projecttype=' + project_type +
+            '&projecttitle=' + project_title + '&projectdescription=' + project_description;
 
         $.ajax({
             type: 'post',

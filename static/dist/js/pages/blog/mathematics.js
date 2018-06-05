@@ -12,7 +12,6 @@ const advertCode = `
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
 `
 
 const main = document.querySelector('main');
@@ -30,6 +29,7 @@ const thisTopics = '"Primes" OR "Geometry" OR "Space Geometry" OR "Elliptic Curv
 async function updateNews(){
     const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+this_pagesize+'&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
+    //store articles into localstorage
     main.innerHTML = json.articles.map(createArticle).join('\n');
 }
 
@@ -49,7 +49,17 @@ function createArticle(article){
   </div>
 
 </div>
-
     `;
 }
+
+function fetchOldArticles(){
+var old_articles = JSON.parse(localStorage.getItem('article'));
+
+for (i = 0; i < old_articles.length; i++){
+ main.innerHTML += createArticle(article=old_articles[i]).join('\n');     
+}
+
+}
+
+//fetchOldArticles();
 updateNews();
