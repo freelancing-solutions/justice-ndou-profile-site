@@ -1,0 +1,25 @@
+
+
+<div class="box small-box-footer with-border">
+    <div class="box box-header with-border">
+        <h3 class="box-title"> Status Response</h3>
+        <blockquote>
+                <h3 class="box-title">{{ thisproject.project_type }}</h3>
+        </blockquote>
+    </div>
+
+    <div class="box small-box-footer">
+        <div class="box box-header with-border">
+            
+            <h3 class="box-title">{{ thisproject.project_title }}</h3>
+            <blockquote>
+                {{ thisproject.project_description }}
+            </blockquote>
+        </div>
+
+
+        <span>Status : {{ thisproject.project_status }}   </span>
+        <span>Date Started : {{ thisproject.start_date }} </span>
+
+    </div>
+</div>

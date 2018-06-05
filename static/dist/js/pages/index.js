@@ -59,7 +59,7 @@ document.getElementById('programmingid').addEventListener("click", function () {
             type: "get",
             url: "/blog/programming",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -74,7 +74,7 @@ document.getElementById('scienceid').addEventListener("click", function () {
             type: "get",
             url: "/blog/science",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -88,7 +88,7 @@ document.getElementById('philosophyid').addEventListener("click", function () {
             type: "get",
             url: "/blog/philosophy",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -101,7 +101,7 @@ document.getElementById('mathematicsid').addEventListener("click", function () {
             type: "get",
             url: "/blog/mathematics",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -116,7 +116,7 @@ document.getElementById('hackerid').addEventListener("click", function () {
          type: "get",
          url: "/blog/hacking",
          data: "",
-         cache: true,
+         cache: false,
          success: function (html) {
              $('#mainbodyinfdiv').html(html)
          }
@@ -133,7 +133,7 @@ document.getElementById('facebookid').addEventListener("click", function () {
             type: "get",
             url: "/social/facebook",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -147,7 +147,7 @@ document.getElementById('googleid').addEventListener("click", function () {
             type: "get",
             url: "/social/google",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -161,7 +161,7 @@ document.getElementById('twitterid').addEventListener("click", function () {
             type: "get",
             url: "/social/twitter",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -175,7 +175,7 @@ document.getElementById('quoraid').addEventListener("click", function () {
             type: "get",
             url: "/social/quora",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
@@ -192,11 +192,42 @@ document.getElementById('youtubeid').addEventListener("click", function () {
             type: "get",
             url: "/social/youtube",
             data: "",
-            cache: true,
+            cache: false,
             success: function (html) {
                 $('#mainbodyinfdiv').html(html)
             }
         });
+});
+
+
+//Hireme
+
+document.getElementById('dohireid').addEventListener("click", function(){
+    clearActive();
+    this.classList.add("active");
+    $.ajax({
+        type: "get",
+        url: "/services/dohire",
+        data: "",
+        cache: false,
+        success: function(html){
+            $('#mainbodyinfdiv').html(html)
+        }
+    });
+});
+//checkrequeststatusid
+document.getElementById('checkrequeststatusid').addEventListener("click", function(){
+    clearActive();
+    this.classList.add("active");
+    $.ajax({
+        type: "get",
+        url: "/services/request-status",
+        data: "",
+        cache: false,
+        success: function(html){
+            $('#mainbodyinfdiv').html(html)
+        }
+    });
 });
 
 

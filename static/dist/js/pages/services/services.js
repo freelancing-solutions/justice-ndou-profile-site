@@ -13,7 +13,7 @@ function verify(){
 document.getElementById('hiremesend').addEventListener("click", function () {
 
     if (verify() === true){
-
+        const route = "hireme";
         const names = document.getElementById('namesid').value;
         const cell = document.getElementById('cellid').value;
         const email = document.getElementById('emailid').value;
@@ -26,7 +26,7 @@ document.getElementById('hiremesend').addEventListener("click", function () {
         const project_title = document.getElementById('projecttitleid').value;
         const project_description = document.getElementById('projectdescriptionid').value;
 
-        const form_data = '&names=' + names + '&cell=' + cell + '&email=' + email + '&website=' + website + '&myfacebook=' + myfacebook +
+        const form_data ='&route=' + route + '&names=' + names + '&cell=' + cell + '&email=' + email + '&website=' + website + '&myfacebook=' + myfacebook +
             '&mytwitter=' + mytwitter + '&company=' + company + '&freelancing=' + freelancing + '&projecttype=' + project_type +
             '&projecttitle=' + project_title + '&projectdescription=' + project_description;
 

@@ -4,3 +4,6 @@ handlers:
 
 - url: /services
   script: services.app
+
+- url: /services/.*
+  script: services.app  
