@@ -22,8 +22,10 @@ document.getElementById('softwareprojectslinkid').addEventListener("click", func
 });
 //
 document.getElementById('servicesid').addEventListener("click", function () {
-       clearActive();
+       
+    clearActive();
        this.classList.add("active");
+
        $.ajax({
             type: "get",
             url: "/profiles/services",

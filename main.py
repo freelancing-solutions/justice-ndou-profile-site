@@ -22,7 +22,7 @@ import jinja2
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.api import urlfetch
-from newsapi import NewsApiClient
+#from newsapi import NewsApiClient
 import logging
 import datetime
 template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd()))
@@ -111,7 +111,7 @@ class Articles (ndb.Expando):
         
         """
         try:
-            newsapi = NewsApiClient(api_key='3b2be7ef781441f4bde537854ffff2bf')
+            #newsapi = NewsApiClient(api_key='3b2be7ef781441f4bde537854ffff2bf')
 
             articles_url = 'https://newsapi.org/v2/everything?q='
 
