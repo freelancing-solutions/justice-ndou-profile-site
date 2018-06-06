@@ -21,6 +21,8 @@ import webapp2
 import jinja2
 from google.appengine.ext import ndb
 from google.appengine.api import users
+from google.appengine.api import urlfetch
+from newsapi import NewsApiClient
 import logging
 import datetime
 template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd()))
@@ -30,6 +32,110 @@ template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd()))
 #default_app = firebase_admin.initialize_app(cred)
 
 from accounts import Accounts
+
+
+this_topics = '"CyberAttacks" OR "Hacking Tools" OR "Linux" OR "Kali Linux" OR "Hacking" OR "Penetration Testing Algorithms" OR "Botnets" OR "Botnet Mining" OR  "Hackers" OR "Penetration Testing" OR "DDOS" OR "Networking" OR "State Sponsored Hacking" OR "Maths" OR "Mathematics in Programming" OR "Mathematics" OR "Numerical Algorithms" OR "Graph Theory"  OR "Cryptography" OR "Numerical Analysis" OR "Theory of Everything" OR "Number Theory" OR "Combinatorials" OR "Programming" OR "Python Algorithms" OR "Algorithms" OR "AI Algorithms" OR "Advanced Algorithms"  OR "Cryptographic Algorithms" OR "Javascript" OR "Python27" OR "HTML5" OR "CSS3" OR "Jquery" OR "Jinja2" OR "Jinja-Templating" OR "Google App Engine" OR "Google App Engine" OR "Physics" OR "Nanotechnolodgy" OR "Space Exploration" OR "Advanced Physics" OR "Astronomy" OR "Mechanical Engineering" OR "Chemical Engineering" OR "Biotech"'
+this_page_size = 50
+apiKey = '3b2be7ef781441f4bde537854ffff2bf'
+
+class Articles (ndb.Expando):
+    
+    url = ndb.StringProperty()
+    title = ndb.StringProperty()
+    urlToImage = ndb.StringProperty()
+    description = ndb.StringProperty()
+
+    def write_url(self,url):
+        try:
+            url = str(url)
+            if url != None:
+                self.url = url
+                return url
+        except Exception as e:
+            raise e
+
+    def write_title(self,title):
+        try:
+            title = str(title)
+            title = title.strip()
+            if title != None:
+                self.title = title
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            raise e
+
+    def write_urlToImage(self,urlToImage):
+        try:
+            urlToImage = str(urlToImage)
+            if urlToImage != None:
+                self.urlToImage = urlToImage
+                return True
+            else:
+                return False
+            
+
+        except Exception as e:
+            raise e
+    
+    def write_description(self,description):
+        try:
+            description = str(description)
+            description = description.strip()
+            if description != None:
+                self.description = description
+                return True
+            else:
+                return False
+        except Exception as e:
+            raise e
+
+    def fetch_articles(self,total):
+        """
+        try:
+            strMessage = strMessage + " Optout:Reply STOP"
+            form_data = 'user=' + self.strLoginName + '&password=' + self.strPassword + '&cell=' + strCell + '&msg=' + strMessage + '&ref=' + strMessageID
+            headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+            result = urlfetch.fetch(url=self.strSendHTTPS,payload=form_data,method=urlfetch.POST,headers=headers,validate_certificate=True)
+            if (result.status_code >= 200) and (result.status_code < 400) :
+                strResult = result.content
+                strResult = strResult.replace("ACCEPTED"," ")
+                strResult = strResult.strip()
+                return strResult
+            else:
+                return None
+        except urlfetch.Error:
+            return None
+        
+        """
+        try:
+            newsapi = NewsApiClient(api_key='3b2be7ef781441f4bde537854ffff2bf')
+
+            articles_url = 'https://newsapi.org/v2/everything?q='
+
+            total = str(total)
+            total = total.strip()
+            mydate = datetime.datetime.now()
+            
+            this_date = str(mydate.year) + "-" + str(mydate.month) + "-" + str(mydate.day)
+
+            myarticles_url = articles_url + this_topics + "&pageSize=" + total + '&from=' + this_date + '&apiKey=' + apiKey
+
+
+            if (total.isdigit() and (int(total) <= this_page_size)):
+                
+                all_articles = newsapi.get_everything(q='bitcoin')
+
+                logging.info(all_articles)
+                return all_articles
+                            
+            else:
+                return ""
+
+        except Exception as e:
+            raise e
 
 class MainRouterHandler(webapp2.RequestHandler):
 
@@ -48,11 +154,22 @@ class MainRouterHandler(webapp2.RequestHandler):
         self.response.write(template.render(context))
 
     def RouteHome(self):
+        this_articles = Articles()
+        
+        #articles = this_articles.fetch_articles(total=43)
+
+
+
         template = template_env.get_template('templates/index.html')
+        #context = {'articles':articles}
         context = {}
         self.response.write(template.render(context))
 
     def RouteLogin(self):
+        
+
+
+
         template = template_env.get_template('templates/authentication/login.html')
         context = {}
         self.response.write(template.render(context))
@@ -181,8 +298,6 @@ class MainRouterHandler(webapp2.RequestHandler):
             elif ("logout" in strURLlist) or ("logout.html" in strURLlist) or ("signout" in strURLlist) or ("signout.html" in strURLlist):
                 self.RouteLogout()
 
-
-
             elif "sitemap.xml" in strURLlist:
                 self.RouteSitemap()
 
@@ -194,9 +309,6 @@ class MainRouterHandler(webapp2.RequestHandler):
 
             elif ("contact" in strURLlist) or ("contact.html" in strURLlist):
                 self.RouteContact()
-
-
-
 
             elif ("faq" in strURLlist) or ("faq.html" in strURLlist):
                 self.RouteFAQ()

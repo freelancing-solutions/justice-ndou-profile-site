@@ -1,0 +1,17 @@
+..\newsapi\__init__.py
+..\newsapi\__init__.pyc
+..\newsapi\const.py
+..\newsapi\const.pyc
+..\newsapi\newsapi_auth.py
+..\newsapi\newsapi_auth.pyc
+..\newsapi\newsapi_client.py
+..\newsapi\newsapi_client.pyc
+..\newsapi\newsapi_exception.py
+..\newsapi\newsapi_exception.pyc
+..\tests\__init__.py
+..\tests\__init__.pyc
+PKG-INFO
+SOURCES.txt
+dependency_links.txt
+requires.txt
+top_level.txt

@@ -24,7 +24,7 @@ class HireMe(ndb.Expando):
     project_description = ndb.StringProperty()
     estimated_budget = ndb.IntegerProperty(default=50)
     start_date = ndb.DateProperty()
-    project_status = ndb.StringProperty("created") # read, started, milestone, completed
+    project_status = ndb.StringProperty(default="created") # read, started, milestone, completed
 
     
     
@@ -50,6 +50,18 @@ class HireMe(ndb.Expando):
 
         except:
             return False
+
+    def create_projectid(self):
+        
+        import random,string
+        try:
+            projectid = ""
+            for i in range(12):
+                projectid += random.SystemRandom().choice(string.digits + string.ascii_uppercase)
+            return projectid
+        except:
+            return None
+        
 
     def write_userid(self,userid):
         try:
@@ -253,8 +265,10 @@ class ServicesHandler(webapp2.RequestHandler):
                     this_hireme.write_facebook(facebook=facebook)
                     this_hireme.write_twitter(twitter=twitter)
                     this_hireme.write_freelancing(freelancing=freelancing)
+                    this_hireme.write_projectid(projectid=this_hireme.create_projectid())
                     this_hireme.put()
-                    self.response.write("Successfuly created your request i will get back to you as soon as possible")
+                    self.response.write("Successfully created your project with project code : " + this_hireme.projectid)
+                    self.response.write("""<br><blockquote>Please keep your project id safe as its usefull when requesting your project status later, your project code is also sent to your email for safe keeping</blockquote>""")
 
             elif route == "get-hireme-requests":
                 
@@ -306,6 +320,11 @@ class ThisServicesHandler(webapp2.RequestHandler):
                 template = template_env.get_template('templates/justice-ndou/personal-profile/services/status-response.html')
                 context = {'thisproject': this_project}
                 self.response.write(template.render(context))
+            else:
+                template = template_env.get_template('templates/justice-ndou/personal-profile/services/status-response.html')
+                context = {'thisproject': this_project}
+                self.response.write(template.render(context))
+                
 
 
 app = webapp2.WSGIApplication([
