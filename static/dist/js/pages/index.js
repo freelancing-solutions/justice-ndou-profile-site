@@ -250,6 +250,7 @@ var topics_list = ["CyberAttacks","Hacking Tools","Linux","Kali Linux","Hacking"
 "CSS3","Jquery","Jinja2","Jinja-Templating","Google App Engine","Google App Engine","Physics","Nanotechnolodgy",
 "Space Exploration","Advanced Physics","Astronomy","Mechanical Engineering","Chemical Engineering","Biotech"];
 
+
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
@@ -268,7 +269,8 @@ function shuffle(array) {
   
     return array;
   }
-function randomizeTopics(){
+  
+  function randomizeTopics(){
     
     randomized = shuffle(topics_list)
     temp_string = ""
@@ -280,7 +282,6 @@ function randomizeTopics(){
             temp_string = temp_string + ' OR "'   + randomized[i] + '"'
         }
         
-
     }
     return temp_string
 

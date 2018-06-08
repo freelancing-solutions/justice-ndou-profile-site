@@ -22,15 +22,55 @@ const this_month = now.getMonth();
 const this_day = now.getDay();
 const this_date = this_year + "-" + this_month + "-" + this_day;
 const this_pagesize = 25;
-const thisTopic = '"Programming" OR "Python Algorithms" OR "Algorithms" OR "AI Algorithms" OR "Advanced Algorithms"  OR "Cryptographic Algorithms" OR "Javascript" OR "Python27" OR "HTML5" OR "CSS3" OR "Jquery" OR "Jinja2" OR "Jinja-Templating" OR "Google App Engine" OR "Google App Engine"'
+
+const topics_list = ["Programming","Python Algorithms","Algorithms","AI Algorithms","Advanced Algorithms","Cryptographic Algorithms","Javascript","Python27","HTML5","CSS3","Jquery","Jinja2","Jinja-Templating","Google App Engine","Google App Engine"];
 
 // Python27, Javascript, HTML5, CSS3, Jinja-Templating, Google App Engine and Google Cloud Platform
 //window.addEventListener('load', e =>{
 //updateNews();
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
 
+
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+  
+  function randomizeTopics(){
+    
+    randomized = shuffle(topics_list)
+    temp_string = ""
+    for (i = 0; i < randomized.length; i++){
+
+        if (i === 0){
+            temp_string = '"'+ randomized[i] + '"'
+        }else{
+            temp_string = temp_string + ' OR "'   + randomized[i] + '"'
+        }
+        
+    }
+    return temp_string
+
+}
+
+
 async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopic+'&pageSize='+ this_pagesize +'&from='+this_date+'&apiKey='+apiKey);
+    const res = await fetch('https://newsapi.org/v2/everything?q='+randomizeTopics()+'&pageSize='+ this_pagesize +'&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
     main.innerHTML = json.articles.map(createArticle).join('\n');
 }

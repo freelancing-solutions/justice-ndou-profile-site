@@ -21,15 +21,55 @@ const this_year = now.getFullYear();
 const this_month = now.getMonth();
 const this_day = now.getDay();
 const this_date = this_year + "-" + this_month + "-" + this_day;
-const this_pagesize = 25;
-const thisTopics ='"Fusion" OR "Atomic Physics" OR "Physics" OR "Nanotechnolodgy" OR "Space Exploration" OR "Advanced Physics" OR "Astronomy" OR "Mechanical Engineering" OR "Chemical Engineering" OR "Biotech" ';
+const this_pagesize = 50;
+
+//TODO- consider adding functionality to add and remove topics on the website itself
+//consider allowing users to enable the site to send them notifications on articles
+
+const topics_list = ["Fusion","Atomic Physics","Physics","Nanotechnolodgy","Space Exploration","Advanced Physics","Astronomy","Mechanical Engineering","Chemical Engineering","Biotech"];
 
 //window.addEventListener('load', e =>{
 //updateNews();
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+  
+  function randomizeTopics(){
+    
+    randomized = shuffle(topics_list)
+    temp_string = ""
+    for (i = 0; i < randomized.length; i++){
+
+        if (i === 0){
+            temp_string = '"'+ randomized[i] + '"'
+        }else{
+            temp_string = temp_string + ' OR "'   + randomized[i] + '"'
+        }
+        
+    }
+    return temp_string
+
+}
+
 
 async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+this_pagesize+'&from='+this_date+'&apiKey='+apiKey);
+    const res = await fetch('https://newsapi.org/v2/everything?q='+randomizeTopics()+'&pageSize='+this_pagesize+'&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
     main.innerHTML = json.articles.map(createArticle).join('\n');
 }
