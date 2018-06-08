@@ -230,9 +230,6 @@ document.getElementById('checkrequeststatusid').addEventListener("click", functi
     });
 });
 
-
-
-
 // TODO- use google api for news and any other available API's to populate our blog upon launch,
 // TODO- blog pages must be summaries with links to the original article///
 
@@ -246,8 +243,6 @@ const this_month = now.getMonth();
 const this_day = now.getDay();
 const this_date = this_year + "-" + this_month + "-" + this_day;
 const this_pagesize = 100;
-const thisTopics = '"CyberAttacks" OR "Hacking Tools" OR "Linux" OR "Kali Linux" OR "Hacking" OR "Penetration Testing Algorithms" OR "Botnets" OR "Botnet Mining" OR  "Hackers" OR "Penetration Testing" OR "DDOS" OR "Networking" OR "State Sponsored Hacking" OR "Maths" OR "Mathematics in Programming" OR "Mathematics" OR "Numerical Algorithms" OR "Graph Theory"  OR "Cryptography" OR "Numerical Analysis" OR "Theory of Everything" OR "Number Theory" OR "Combinatorials" OR "Programming" OR "Python Algorithms" OR "Algorithms" OR "AI Algorithms" OR "Advanced Algorithms"  OR "Cryptographic Algorithms" OR "Javascript" OR "Python27" OR "HTML5" OR "CSS3" OR "Jquery" OR "Jinja2" OR "Jinja-Templating" OR "Google App Engine" OR "Google App Engine" OR "Physics" OR "Nanotechnolodgy" OR "Space Exploration" OR "Advanced Physics" OR "Astronomy" OR "Mechanical Engineering" OR "Chemical Engineering" OR "Biotech"';
-
 var topics_list = ["CyberAttacks","Hacking Tools","Linux","Kali Linux","Hacking","Penetration Testing Algorithms",
 "Botnets","Botnet Mining","Hackers","Penetration Testing","DDOS","Networking","State Sponsored Hacking","Maths","Mathematics in Programming","Mathematics",
 "Numerical Algorithms","Graph Theory","Cryptography","Numerical Analysis","Theory of Everything","Number Theory","Combinatorials","Programming","Python Algorithms",
