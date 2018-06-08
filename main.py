@@ -22,7 +22,6 @@ import jinja2
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.api import urlfetch
-#from newsapi import NewsApiClient
 import logging
 import datetime
 template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd()))
@@ -39,6 +38,8 @@ this_page_size = 50
 apiKey = '3b2be7ef781441f4bde537854ffff2bf'
 
 class Articles (ndb.Expando):
+    
+    
     
     url = ndb.StringProperty()
     title = ndb.StringProperty()
@@ -137,6 +138,130 @@ class Articles (ndb.Expando):
         except Exception as e:
             raise e
 
+
+
+
+class Posts(ndb.Expando):
+    
+    post_url = ndb.StringProperty()
+    post_title = ndb.StringProperty()
+    post_description = ndb.StringProperty()
+    post_body = ndb.StringProperty()
+    
+    post_date = ndb.DateProperty()
+    post_time = ndb.TimeProperty()
+
+    post_category = ndb.StringProperty()
+
+    post_seo_description = ndb.StringProperty()
+    
+
+    def write_post_url(self,post_url):
+        try:
+            post_url = str(post_url)
+            post_url = post_url.strip()
+
+            if post_url != None:
+                self.post_url = post_url
+                return True
+            else:
+                return False
+        except Exception as e:
+            raise e
+
+
+    def write_post_title(self,post_title):
+        try:
+            post_title = str(post_title)
+            post_title = post_title.strip()
+            if post_title != None:
+                self.post_title = post_title
+                return True
+            else:
+                return False
+        except Exception as e:
+            raise e
+
+    def write_post_description(self,post_description):        
+        try:
+            post_description = str(post_description)
+            post_description = post_description.strip()
+            if post_description != None:
+                self.post_description = post_description
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            raise e
+
+    def write_post_body(self,post_body):
+        try:
+            post_body = str(post_body)
+            post_body = post_body.strip()
+
+            if post_body != None:
+                self.post_body = post_body
+                return True
+            else:
+                return False
+        except Exception as e:
+            raise e
+
+    def write_post_date(self,post_date):
+        try:
+
+            if isinstance(post_date,datetime.date):
+                self.post_date = post_date
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            raise e
+
+    def write_post_time(self,post_time):
+        try:
+            
+            if isinstance(post_time,datetime):
+                self.post_time = post_time
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            raise e
+
+    
+    def write_post_category(self,post_category):
+        try:
+
+            post_category = str(post_category)        
+            if post_category != None:
+                self.post_category = post_category
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            raise e
+
+    def write_post_seo_description(self,post_seo_description):
+        try:
+
+            post_seo_description = str(post_seo_description)
+            post_seo_description = post_seo_description.strip()
+
+            if post_seo_description != None:
+                self.post_seo_description = post_seo_description
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            raise e
+
+
 class MainRouterHandler(webapp2.RequestHandler):
 
     def RouteSitemap(self):
@@ -154,11 +279,9 @@ class MainRouterHandler(webapp2.RequestHandler):
         self.response.write(template.render(context))
 
     def RouteHome(self):
-        this_articles = Articles()
+        #this_articles = Articles()
         
         #articles = this_articles.fetch_articles(total=43)
-
-
 
         template = template_env.get_template('templates/index.html')
         #context = {'articles':articles}
@@ -166,10 +289,7 @@ class MainRouterHandler(webapp2.RequestHandler):
         self.response.write(template.render(context))
 
     def RouteLogin(self):
-        
-
-
-
+    
         template = template_env.get_template('templates/authentication/login.html')
         context = {}
         self.response.write(template.render(context))
@@ -189,7 +309,10 @@ class MainRouterHandler(webapp2.RequestHandler):
         context = {}
         self.response.write(template.render(context))
 
-
+    def RouteBlog(self):
+        template = template_env.get_template("templates/blog/home.html")
+        context = {}
+        self.response.write(template.render(context))
 
     def Route404(self):
         template = template_env.get_template('templates/404.html')
@@ -309,6 +432,9 @@ class MainRouterHandler(webapp2.RequestHandler):
 
             elif ("contact" in strURLlist) or ("contact.html" in strURLlist):
                 self.RouteContact()
+
+            elif ("blog" in strURLlist) or ("blog.html" in strURLlist):
+                self.RouteBlog()
 
             elif ("faq" in strURLlist) or ("faq.html" in strURLlist):
                 self.RouteFAQ()
