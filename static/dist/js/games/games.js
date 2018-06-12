@@ -11,7 +11,21 @@ document.getElementById('tetrisid').addEventListener("click", function(){
         data: my_data,
         cache: false,
         success: function(response){
-            $('#mainbodyinf').html(response)
+            $('#mainbodyinf').html(response);
+        }
+    });
+});
+
+document.getElementById('pacmanid').addEventListener("click", function(){
+    const route = "pacman";
+    const my_data = '&route=' + route;
+    $.ajax({
+        type: "post",
+        url: "/games",
+        data: my_data,
+        cache: false,
+        success: function(response){
+            $('#mainbodyinf').html(response);
         }
     });
 });

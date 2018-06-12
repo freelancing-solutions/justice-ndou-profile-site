@@ -14,7 +14,7 @@ var config =
 };
 if (!firebase.apps.length) {
     firebase.initializeApp(config);
-}else {
+}else { alert('firebase not initializing');
 }
 }catch (err){
 

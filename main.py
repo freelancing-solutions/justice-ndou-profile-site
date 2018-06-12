@@ -421,7 +421,10 @@ class MainRouterHandler(webapp2.RequestHandler):
         context = {}
         self.response.write(template.render(context))
 
-
+    def RoutePacman(self):
+        template = template_env.get_template("templates/games/pacman/pacman.html")
+        context = {}
+        self.response.write(template.render(context))
     def RouteDashboardPost(self,route):
         from services import HireMe
 
@@ -741,6 +744,8 @@ class MainRouterHandler(webapp2.RequestHandler):
                 route = self.request.get('route')
                 if route == "tetris":
                     self.RouteTetris()
+                elif route == "pacman":
+                    self.RoutePacman()
 
             elif ("dashboard" in strURLlist):
                 route = self.request.get('route')

@@ -50,17 +50,7 @@ initApp = function() {
               document.getElementById('strUserNameID').textContent = displayName;
               document.getElementById('strUserImageID').src =photoURL;
               document.getElementById('strMainUserImageID').src = photoURL;
-              document.getElementById('strAccountDetails').textContent = JSON.stringify({
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                phoneNumber: phoneNumber,
-                photoURL: photoURL,
-                uid: uid,
 
-                accessToken: accessToken,
-                providerData: providerData
-              }, null, '  ');
               //Send the User Token to the backend with ajax at this point with a sign in instruction
                 var vstrChoice = 2;
                 if (emailVerified === true){
@@ -84,9 +74,9 @@ initApp = function() {
             // User is signed out.
             //document.getElementById('sign-in-status').textContent = 'Signed out';
             document.getElementById('SingInButton').textContent = 'Sign in';
-            document.getElementById('strAccountDetails').textContent = 'null';
+            
             //Send the User Token to the backend at this stage using ajax with instructions to logout the user
-            var dataString = document.getElementById('account-details').value;
+            const dataString = "";
             $.ajax({
                 type: "post",
                 url: "/logout",

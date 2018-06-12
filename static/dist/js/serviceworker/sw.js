@@ -19,7 +19,6 @@ const staticAssets = [
     '/static/dist/js/app.min.js',
     '/static/dist/js/firebase.js',
     '/static/dist/js/firebaseui.js',
-    '/static/dist/js/pages/moment.min.js',
     '/static/dist/js/pages/accounts.js',
     '/static/dist/js/pages/contacts.js',
     '/static/dist/js/pages/index.js',
