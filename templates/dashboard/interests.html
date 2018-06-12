@@ -1,0 +1,132 @@
+<div class="box box-footer with-border">
+    <div class="box box-header with-border">
+        <h3 class="box-title"> <strong> <i class="fa fa-ioxhost"> </i> Interests</strong></h3>
+    </div>
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#mytopicsid" data-toggle="tab"><strong><i class="fa fa-file-archive-o"> </i> My Topics</strong></a></li>
+                            <li><a href="#mysubjectsid" data-toggle="tab"> <strong><i class="fa fa-file"> </i> My Subjects</strong></a> </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="mytopicsid">
+                                <div class="box box-footer with-border">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label pull-left">Topic Label</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" id="mynewtopiclabelid">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label pull-left">Topic ID</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" id="mynewtopicid">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label pull-left"></label>
+                                            <div class="col-sm-6">
+                                                <button type="button" class="btn btn-default" id="createtopicbutt"><strong><i class="fa fa-cloud-upload"> </i> Create Topic</strong></button>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label pull-left"></label>
+                                            <div class="col-sm-6">
+                                                <div id="createtopicsform"></div>
+                                            </div>                                            
+                                        </div>
+                                        
+                                    </form>
+                   
+                                </div>
+                                <div class="box box-footer with-border">
+                                    <div class="box box-header with-border">
+                                        <h3 class="box-title"> Topics</h3>
+                                    </div>
+                                        <table id="messagesid" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <strong>Topic id</strong>
+                                                    </th>
+                                                    <th>
+                                                        <strong>Label</strong>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>        
+                                                    {% for interest in interests_list %}
+                                                    <tr>
+                                                        <td>{{ interest.topic_id}}</td>
+                                                        <td>{{ interest.topic }}</td>
+                                                    </tr>    
+                                                    {% endfor %}     
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>
+                                                        <strong>Topic id</strong>
+                                                    </th>
+                                                    <th>
+                                                        <strong>Label</strong>
+                                                    </th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                </div>
+                                
+                            </div>
+                            <div class="tab-pane" id="mysubjectsid">
+                                <div class="box box-body with-border">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="interesttopicid" class="col-sm-3 control-label pull-left">Interest Topic</label>
+                                                <div class="col-sm-6">
+                                                    <select id="interesttopicid" class="form-control">
+                                                        {% for interest in interests_list %}
+                                                            <option value="{{ interest.topic_id }}">{{ interest.topic }}</option>
+                                                        {% endfor %}                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="topicsubjectsid" class="col-sm-6 control-label pull-left">Present Subjects</label>
+                                                        <textarea id="topicsubjectsid" class="form-control"></textarea>
+                                                        <button type="button" class="btn btn-default" id="removesubjectsbutt">
+                                                            <strong>
+                                                                <i class="fa fa-cut"> </i> Remove </strong>
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="addsubjectsid" class="col-sm-6 control-label pull-left">Add Subjects</label>
+                                                        <textarea id="addsubjectsid" class="form-control"></textarea>
+                                                        <button type="button" class="btn btn-default" id="addsubjectsbutt">
+                                                            <strong>
+                                                                <i class="fa fa-save"> </i> Add Subjects</strong>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-sm-6">
+                                                    <div id="formresponseid"></div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>        
+</div>
+<script src="/static/dist/js/pages/dashboard/interests.js"></script>

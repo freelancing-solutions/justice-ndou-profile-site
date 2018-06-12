@@ -230,6 +230,9 @@ document.getElementById('checkrequeststatusid').addEventListener("click", functi
     });
 });
 
+
+
+
 // TODO- use google api for news and any other available API's to populate our blog upon launch,
 // TODO- blog pages must be summaries with links to the original article///
 
@@ -242,57 +245,15 @@ const this_year = now.getFullYear();
 const this_month = now.getMonth();
 const this_day = now.getDay();
 const this_date = this_year + "-" + this_month + "-" + this_day;
-const this_pagesize = 100;
-var topics_list = ["CyberAttacks","Hacking Tools","Linux","Kali Linux","Hacking","Penetration Testing Algorithms",
-"Botnets","Botnet Mining","Hackers","Penetration Testing","DDOS","Networking","State Sponsored Hacking","Maths","Mathematics in Programming","Mathematics",
-"Numerical Algorithms","Graph Theory","Cryptography","Numerical Analysis","Theory of Everything","Number Theory","Combinatorials","Programming","Python Algorithms",
-"Algorithms","AI Algorithms","Advanced Algorithms","Cryptographic Algorithms","Javascript","Python27","HTML5",
-"CSS3","Jquery","Jinja2","Jinja-Templating","Google App Engine","Google App Engine","Physics","Nanotechnolodgy",
-"Space Exploration","Advanced Physics","Astronomy","Mechanical Engineering","Chemical Engineering","Biotech"];
-
-
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-  
-    return array;
-  }
-  
-  function randomizeTopics(){
-    
-    randomized = shuffle(topics_list)
-    temp_string = ""
-    for (i = 0; i < randomized.length; i++){
-
-        if (i === 0){
-            temp_string = '"'+ randomized[i] + '"'
-        }else{
-            temp_string = temp_string + ' OR "'   + randomized[i] + '"'
-        }
-        
-    }
-    return temp_string
-
-}
+const this_pagesize = 50;
+const thisTopics = '"CyberAttacks" OR "Hacking Tools" OR "Linux" OR "Kali Linux" OR "Hacking" OR "Penetration Testing Algorithms" OR "Botnets" OR "Botnet Mining" OR  "Hackers" OR "Penetration Testing" OR "DDOS" OR "Networking" OR "State Sponsored Hacking" OR "Maths" OR "Mathematics in Programming" OR "Mathematics" OR "Numerical Algorithms" OR "Graph Theory"  OR "Cryptography" OR "Numerical Analysis" OR "Theory of Everything" OR "Number Theory" OR "Combinatorials" OR "Programming" OR "Python Algorithms" OR "Algorithms" OR "AI Algorithms" OR "Advanced Algorithms"  OR "Cryptographic Algorithms" OR "Javascript" OR "Python27" OR "HTML5" OR "CSS3" OR "Jquery" OR "Jinja2" OR "Jinja-Templating" OR "Google App Engine" OR "Google App Engine" OR "Physics" OR "Nanotechnolodgy" OR "Space Exploration" OR "Advanced Physics" OR "Astronomy" OR "Mechanical Engineering" OR "Chemical Engineering" OR "Biotech"';
 
 //window.addEventListener('load', e =>{
 //updateNews();
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
 
 async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q='+ randomizeTopics() +'&pageSize='+ this_pagesize +'&from='+this_date+'&apiKey='+apiKey);
+    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+ this_pagesize +'&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
     main.innerHTML = json.articles.map(createArticle).join('\n');
 
@@ -317,5 +278,5 @@ function createArticle(article){
 
     `;
 }
-console.log(randomizeTopics());
+
 updateNews();

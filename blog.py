@@ -44,6 +44,8 @@ class BlogHandler(webapp2.RequestHandler):
             context = {}
             self.response.write(template.render(context))
 
+            
+
 
 #TODO- consider methods of obtaining and storing old articles and then submitting them as secong pages indexed by dates
 

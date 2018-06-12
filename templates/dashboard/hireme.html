@@ -1,0 +1,46 @@
+
+<link rel="stylesheet" href="/static/plugins/datatables/dataTables.bootstrap.css">
+<div class="box box-footer with-border">
+    <div class="box box-header with-border">
+        <h3 class="box-title"> <strong> <i class="fa fa-code-fork"> </i> Hire Me</strong></h3>
+    </div>
+
+<div id="mainbodyinf">
+    <table id="hiremetable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th><strong>Names</strong></th>
+                <th><strong>Cell</strong></th>
+                <th><strong>Email</strong></th>
+                <th><strong>Website</strong></th>
+                <th><strong>Title</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for this_hire in this_hires_list %}
+            <tr>
+                <td id="{{ this_hire.projectid }}" name="thishire"><a href="#" > <strong> <i class="fa fa-external-link"> </i>  {{ this_hire.names }}</strong></a></td>
+                <td>{{ this_hire.cell }}</td>
+                <td>{{ this_hire.email }}</td>
+                <td>{{ this_hire.website }}</td>
+                <td>{{ this_hire.project_title }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th><strong>Names</strong></th>
+                <th><strong>Cell</strong></th>
+                <th><strong>Email</strong></th>
+                <th><strong>Website</strong></th>
+                <th><strong>Title</strong></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+</div>
+<script src="/static/dist/js/pages/dashboard/hireme.js"></script>
+<script src="/static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>$(function () {$('#hiremetable').DataTable({"paging": true,"lengthChange": true,"searching": true,"ordering": true,"info": true,"autoWidth": false});});</script>

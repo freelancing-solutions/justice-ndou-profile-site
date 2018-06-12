@@ -1,14 +1,127 @@
 import logging
 import os
 import webapp2
+
 import jinja2
+
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.api import mail
 import datetime
+
 template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd()))
 
+class ProjectMessages(ndb.Expando):
+    
+    projectid = ndb.StringProperty()
+    subject = ndb.StringProperty()
+    message = ndb.StringProperty()
+    message_type = ndb.StringProperty(default="email") # sms
+    date_sent = ndb.DateProperty(auto_now_add=True)
+    time_sent = ndb.TimeProperty(auto_now_add=True)
+    response = ndb.StringProperty()
+    date_responded = ndb.DateProperty()
+    time_responded = ndb.TimeProperty()
+
+    def write_projectid(self,projectid):
+        try:
+            projectid = str(projectid)
+            if projectid != None:
+                self.projectid = projectid
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            raise e 
+
+    def write_subject(self,subject):
+        try:
+            subject = str(subject)
+            if subject != None:
+                self.subject = subject
+                return True
+            else:
+                return False         
+        except Exception as e:
+            raise e  
+
+    def write_message(self,message):
+        try:
+            message = str(message)
+            if message != None:
+                self.message = message
+                return True 
+            else:
+                return False         
+        except Exception as e:
+            raise e
+
+    def write_message_type(self,message_type):
+        try:
+            message_type = str(message_type)
+            if message_type in ['sms','email']:
+                self.message_type = message_type
+                return True 
+            else:
+                return False 
+        except Exception as e:
+            raise e
+
+    def write_date_sent(self,date_sent):
+        try:
+            if isinstance(datetime.date,date_sent):
+                self.date_sent = date_sent
+                return True 
+            else:
+                return False
+        except Exception as e:
+            raise e 
+
+    def write_time_sent(self,time_sent):
+        try:
+            if isinstance(datetime.time,time_sent):
+                self.time_sent = time_sent
+                return True 
+            else:
+                 return False 
+        except Exception as e:
+            raise e
+
+    def write_response(self,response):
+        try:
+            response = str(response)
+            if response != None:
+                self.response = response 
+                return True 
+            else:
+                return False 
+        except Exception as e:
+            raise e
+
+    def write_date_response_sent(self,date_response):
+        try:
+            if isinstance(datetime.date,date_response):
+                self.date_responded = date_response
+                return True 
+            else:
+                return False  
+            
+        except Exception as e:
+            raise e
+
+    def write_time_response_sent(self,time_response):
+        try:
+            if isinstance(datetime.time,time_response):
+                self.time_responded = time_response
+                return True 
+            else:
+                return False                
+        except Exception as e:
+            raise e
+
 class HireMe(ndb.Expando):
+    
     userid = ndb.StringProperty()
     projectid = ndb.StringProperty()
     names = ndb.StringProperty()
@@ -23,10 +136,49 @@ class HireMe(ndb.Expando):
     project_title = ndb.StringProperty()
     project_description = ndb.StringProperty()
     estimated_budget = ndb.IntegerProperty(default=50)
-    start_date = ndb.DateProperty()
+    start_date = ndb.DateProperty(auto_now_add=True)
     project_status = ndb.StringProperty(default="created") # read, started, milestone, completed
 
-    
+
+    def send_email(self,message):
+        """
+            given an email message send to project owner
+        """
+        try:
+            pass
+        except Exception as e:
+            raise e
+
+    def send_sms(self,sms):
+        """
+         give an sms message send to project owner
+        """
+        try:
+            pass
+        except Exception as e:
+            raise e
+
+
+    def write_estimated_budget(self,estimated_budget):
+        try:
+            estimated_budget = str(estimated_budget)
+            if estimated_budget.isdigit() and int(estimated_budget) > 0:
+                self.estimated_budget = int(estimated_budget) 
+                return True 
+            else:
+                return False
+        except Exception as e:
+            raise e 
+
+    def write_start_date(self,start_date):
+        try:
+            if isinstance(start_date,datetime.date):
+                self.start_date = start_date
+                return True 
+            else:
+                return False          
+        except Exception as e:
+            raise e
     
     def set_project_status(self,status):
         try:
@@ -36,8 +188,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_projectid(self,projectid):
         try:
@@ -48,8 +200,8 @@ class HireMe(ndb.Expando):
             else:
                 return False
 
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def create_projectid(self):
         
@@ -59,8 +211,8 @@ class HireMe(ndb.Expando):
             for i in range(12):
                 projectid += random.SystemRandom().choice(string.digits + string.ascii_uppercase)
             return projectid
-        except:
-            return None
+        except Exception as e:
+            raise e
         
 
     def write_userid(self,userid):
@@ -72,8 +224,8 @@ class HireMe(ndb.Expando):
             else:
                 return False
 
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     
     def write_names(self,names):
@@ -85,8 +237,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_cell(self,cell):
         try:
@@ -100,8 +252,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_email(self,email):
         try:
@@ -113,8 +265,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_website(self,website):
         try:
@@ -126,8 +278,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_facebook(self,facebook):
         try:
@@ -139,8 +291,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_twitter(self,twitter):
         try:
@@ -152,8 +304,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_company(self,company):
         try:
@@ -165,8 +317,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_freelancing(self,freelancing):
         try:
@@ -178,8 +330,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_project_type(self,project_type):
         try:
@@ -189,8 +341,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
     def write_project_title(self,project_title):
         try:
@@ -202,8 +354,8 @@ class HireMe(ndb.Expando):
             else:
                 return False
             
-        except:
-            return False
+        except Exception as e:
+            raise e 
                     
 
     def write_project_description(self,project_description):
@@ -215,8 +367,8 @@ class HireMe(ndb.Expando):
                 return True
             else:
                 return False
-        except:
-            return False
+        except Exception as e:
+            raise e 
 
 
 
@@ -321,6 +473,7 @@ class ThisServicesHandler(webapp2.RequestHandler):
                 context = {'thisproject': this_project}
                 self.response.write(template.render(context))
             else:
+                this_project = HireMe()
                 template = template_env.get_template('templates/justice-ndou/personal-profile/services/status-response.html')
                 context = {'thisproject': this_project}
                 self.response.write(template.render(context))

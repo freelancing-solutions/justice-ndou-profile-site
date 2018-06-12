@@ -1,0 +1,200 @@
+<div class="box box-footer with-border">
+    <div class="box box-header with-border">
+        <h3 class="box-title"> Project Details</h3>
+        <input type="hidden" class="hidden" id="projectid" value={{ this_hire.projectid }}>
+    </div>
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#projectdetailsid" data-toggle="tab"><strong><i class="fa fa-file-archive-o"> </i> Project Details</strong></a></li>
+                <li><a href="#messagingid" data-toggle="tab"> <strong><i class="fa fa-envelope"> </i> Messages</strong></a> </li>
+                <li><a href="#projectfilesid" data-toggle="tab"> <strong><i class="fa fa-file"> </i> Project Files</strong></a> </li>
+            </ul>
+            <div class="tab-content">
+                <div class="active tab-pane" id="projectdetailsid">
+                    <div class="box box-body with-border">
+                        <div class="box box-header with-border">
+                            <h3 class="box-title"> Project Details</h3>
+                        </div>
+
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="namesid"> Names </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-user"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="namesid" name="hireme" value={{ this_hire.names }}>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cellid"> Cell </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-mobile-phone"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="cellid" name="hireme" value={{ this_hire.cell }}>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emailid"> Email </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-envelope"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="emailid" name="hireme" value={{ this_hire.email }}>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="websiteid"> Website </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-link"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="websiteid" name="hireme" value={{ this_hire.website }}>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="facebookid"> Facebook </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-facebook"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="facebookid" name="hireme" value={{ this_hire.facebook }}>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="twitterid"> Twitter </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-twitter"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="twitterid" name="hireme" value={{ this_hire.twitter }}>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="companyid"> Company Name </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-registered"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="companyid" name="hireme" value={{ this_hire.company }}>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="freelancingid"> Preferred Freelancing Service</label>
+                                <div class="input-group">
+
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-product-hunt"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="freelancingid" name="hireme" value={{ this_hire.freelancing }}>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="projecttypeid"> Select Project Type </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-product-hunt"> </i>
+                                    </div>
+
+                                    <input type="text" class="form-control" id="projecttypeid" name="hireme" value={{ this_hire.project_type }}>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="projecttitleid"> Project Title </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-product-hunt"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="projecttitleid" name="hireme" value={{ this_hire.project_title }}>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectdescriptionid"> Project Description </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-product-hunt"> </i>
+                                    </div>
+                                    <textarea id="projectdescriptionid" name="hireme" class="form-control"> {{ this_hire.project_description }}</textarea>
+                                </div>
+                            </div>
+                            <!-- estimated_budget -->
+                            <div class="form-group">
+                                <label for="estimatedbudgetid"> Estimated Budget </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-product-hunt"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="estimatedbudgetid" name="hireme" value={{ this_hire.estimated_budget }}>
+                                </div>
+                            </div>
+                            <!-- start_date -->
+                            <div class="form-group">
+                                <label for="startdateid"> Start Date </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-product-hunt"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="startdateid" name="hireme" value={{ this_hire.start_date }}>
+                                </div>
+                            </div>
+                            <!-- project_status = ndb.StringProperty(default="created") # read, started, milestone, completed -->
+                            <div class="form-group">
+                                <label for="projectstatusid"> Project Status (created,read,started,milestone,completed) </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-product-hunt"> </i>
+                                    </div>
+                                    <input type="text" class="form-control" id="projectstatusid" name="hireme" value={{ this_hire.project_status }}>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" id="hiremesend" class="btn btn-app btn-lg btn-block">
+                                    <strong>
+                                        <i class="fa fa-send"> </i> Hire Me</strong>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <div id="hiremeinf"></div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="messagingid">
+                    <div class="box box-body with-border">
+                        <div class="box box-header with-border">
+                            <h3 class="box-title"> Messaging</h3>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="projectfilesid">
+                    <div class="box box-body with-border">
+                        <div class="box box-header with-border">
+                            <h3 class="box-title"> Projects</h3>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>              
+<script src="/static/dist/js/pages/dashboard/project.js"></script>

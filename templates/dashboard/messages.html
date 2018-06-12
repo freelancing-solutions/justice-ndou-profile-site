@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/static/plugins/datatables/dataTables.bootstrap.css">
+<div class="box box-footer with-border">
+    <div class="box box-header with-border">
+        <h3 class="box-title"> <strong> <i class="fa fa-envelope"> </i> Messages</strong></h3>
+    </div>
+
+
+    <table id="messagesid" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th><strong>Names</strong></th>
+                <th><strong>Cell</strong></th>
+                <th><strong>Email</strong></th>
+                <th><strong>Subject</strong></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th><strong>Names</strong></th>
+                <th><strong>Cell</strong></th>
+                <th><strong>Email</strong></th>
+                <th><strong>Subject</strong></th>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+<script src="/static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>$(function () {$('#messagesid').DataTable({"paging": true,"lengthChange": true,"searching": true,"ordering": true,"info": true,"autoWidth": false});});</script>
