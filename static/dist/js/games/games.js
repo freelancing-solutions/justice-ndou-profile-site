@@ -25,6 +25,50 @@ document.getElementById('pacmanid').addEventListener("click", function(){
         data: my_data,
         cache: false,
         success: function(response){
+            //document.html(response);
+            $('#mainbodyinf').html(response);
+        }
+    });
+});
+
+document.getElementById('chessid').addEventListener("click", function(){
+    const route = "chess";
+    const my_data = '&route=' + route;
+    $.ajax({
+        type: 'post',
+        url: '/games',
+        data: my_data,
+        cache: false,
+        success: function(response){
+            $('#mainbodyinf').html(response);
+        }
+    });
+});
+
+//pingpongid
+document.getElementById('pingpongid').addEventListener("click", function () {
+    const route = "pingpong";
+    const my_data = '&route=' + route;
+    $.ajax({
+        type: 'post',
+        url: '/games',
+        data: my_data,
+        cache: false,
+        success: function (response) {
+            $('#mainbodyinf').html(response);
+        }
+    });
+});
+//checkersid
+document.getElementById('checkersid').addEventListener("click", function () {
+    const route = "checkers";
+    const my_data = '&route=' + route;
+    $.ajax({
+        type: 'post',
+        url: '/games',
+        data: my_data,
+        cache: false,
+        success: function (response) {
             $('#mainbodyinf').html(response);
         }
     });

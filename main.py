@@ -407,6 +407,11 @@ class MainRouterHandler(webapp2.RequestHandler):
         context = {}
         self.response.write(template.render(context))
 
+    def RouteAlgorithms(self):
+        template = template_env.get_template("templates/algorithms/algos.html")
+        context = {}
+        self.response.write(template.render(context))
+
     def RouteDashboard(self):
         template = template_env.get_template("templates/dashboard/dashboard.html")
         context = {}
@@ -417,7 +422,7 @@ class MainRouterHandler(webapp2.RequestHandler):
         self.response.write(template.render(context))
 
     def RouteTetris(self):
-        template = template_env.get_template("templates/games/tetris.html")
+        template = template_env.get_template("templates/games/tetris/tetris.html")
         context = {}
         self.response.write(template.render(context))
 
@@ -425,6 +430,25 @@ class MainRouterHandler(webapp2.RequestHandler):
         template = template_env.get_template("templates/games/pacman/pacman.html")
         context = {}
         self.response.write(template.render(context))
+
+    def RouteChess(self):
+        template = template_env.get_template("templates/games/chess/chess.html")
+        context = {}
+        self.response.write(template.render(context))
+
+    def RouteCheckers(self):
+        template = template_env.get_template("templates/games/checkers/checkers.html")
+        context = {}
+        self.response.write(template.render(context))
+
+
+    def RoutePingPong(self):
+        template = template_env.get_template("templates/games/pingpong/pingpong.html")
+        context = {}
+        self.response.write(template.render(context))
+        
+        
+        
     def RouteDashboardPost(self,route):
         from services import HireMe
 
@@ -714,6 +738,9 @@ class MainRouterHandler(webapp2.RequestHandler):
             elif ("blog" in strURLlist) or ("blog.html" in strURLlist):
                 self.RouteBlog()
 
+            elif ("algorithms" in strURLlist) or ("algorithms.html" in strURLlist):
+                self.RouteAlgorithms()
+
             elif ("dashboard" in strURLlist) or("dashboard.html" in strURLlist):
                 self.RouteDashboard()
 
@@ -746,6 +773,12 @@ class MainRouterHandler(webapp2.RequestHandler):
                     self.RouteTetris()
                 elif route == "pacman":
                     self.RoutePacman()
+                elif route == "chess":
+                    self.RouteChess()
+                elif route == "checkers":
+                    self.RouteCheckers()
+                elif route == "pingpong":
+                    self.RoutePingPong()
 
             elif ("dashboard" in strURLlist):
                 route = self.request.get('route')
