@@ -32,9 +32,6 @@ template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd()))
 
 from accounts import Accounts
 
-
-
-
 this_topics = '"CyberAttacks" OR "Hacking Tools" OR "Linux" OR "Kali Linux" OR "Hacking" OR "Penetration Testing Algorithms" OR "Botnets" OR "Botnet Mining" OR  "Hackers" OR "Penetration Testing" OR "DDOS" OR "Networking" OR "State Sponsored Hacking" OR "Maths" OR "Mathematics in Programming" OR "Mathematics" OR "Numerical Algorithms" OR "Graph Theory"  OR "Cryptography" OR "Numerical Analysis" OR "Theory of Everything" OR "Number Theory" OR "Combinatorials" OR "Programming" OR "Python Algorithms" OR "Algorithms" OR "AI Algorithms" OR "Advanced Algorithms"  OR "Cryptographic Algorithms" OR "Javascript" OR "Python27" OR "HTML5" OR "CSS3" OR "Jquery" OR "Jinja2" OR "Jinja-Templating" OR "Google App Engine" OR "Google App Engine" OR "Physics" OR "Nanotechnolodgy" OR "Space Exploration" OR "Advanced Physics" OR "Astronomy" OR "Mechanical Engineering" OR "Chemical Engineering" OR "Biotech"'
 this_page_size = 50
 apiKey = '3b2be7ef781441f4bde537854ffff2bf'
@@ -186,20 +183,6 @@ class Articles (ndb.Expando):
 
     def fetch_articles(self,total):
         """
-        try:
-            strMessage = strMessage + " Optout:Reply STOP"
-            form_data = 'user=' + self.strLoginName + '&password=' + self.strPassword + '&cell=' + strCell + '&msg=' + strMessage + '&ref=' + strMessageID
-            headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-            result = urlfetch.fetch(url=self.strSendHTTPS,payload=form_data,method=urlfetch.POST,headers=headers,validate_certificate=True)
-            if (result.status_code >= 200) and (result.status_code < 400) :
-                strResult = result.content
-                strResult = strResult.replace("ACCEPTED"," ")
-                strResult = strResult.strip()
-                return strResult
-            else:
-                return None
-        except urlfetch.Error:
-            return None
         
         """
         try:
@@ -432,7 +415,7 @@ class MainRouterHandler(webapp2.RequestHandler):
         self.response.write(template.render(context))
 
     def RouteChess(self):
-        template = template_env.get_template("templates/games/chess/chess.html")
+        template = template_env.get_template("templates/games/garbo/chess.html")
         context = {}
         self.response.write(template.render(context))
 

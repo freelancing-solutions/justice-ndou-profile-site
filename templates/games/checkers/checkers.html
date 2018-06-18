@@ -1,1 +1,23 @@
-Checkers
+
+
+<script src="/static/dist/js/games/checkers/d3.v4.min.js"></script>
+<script src="/static/dist/js/games/checkers/checkers-engine.js"></script>
+
+<div class="row">
+    <div class="col-md-3">
+
+        <ol class="sidebar-menu">
+            <li><button type="button" class="btn btn-flat btn-app btn-block" id="startGameButt"><strong><i class="fa fa-play"> </i> Start Game</strong></button></li>
+            <li><button type="button" class="btn btn-flat btn-app btn-block" id="btnReplay"><strong><i class="fa fa-play-circle"> </i> Replay</strong></button></li>
+        </ol>
+    </div>    
+<div class="col-md-9">
+    <div class="box box-header with-border">
+        <h3 class="box-title"><strong>AI Based Checkers Game</strong></h3>
+    </div>
+    <svg id="checkersBoard" width="560" height="560" style="float:left; margin-right: 50px;"></svg>
+</div>
+</div>
+
+<script src="/static/dist/js/games/checkers/initgame.js"></script>
+

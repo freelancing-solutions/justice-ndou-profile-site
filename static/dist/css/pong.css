@@ -1,0 +1,76 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 600;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+.hand, #start {
+	font-family: 'Handlee', cursive;
+}
+
+#start {
+	margin: 0 auto;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 150%;
+}
+
+#timer {
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.advise {
+	position: absolute;
+	top: 50%;
+	left: 5%;
+}
+
+.player {
+	position: absolute;
+	height: 10%;
+	width: 1%;
+	background-color: #222;
+}
+
+.field {
+	position: absolute;
+	top: 20%;
+	width: 28%;
+	height: 60%;
+	background-color: #56AA22;
+	z-index: -1;
+}
+
+.field-left {
+	left: 22%;
+}
+.field-right {
+	left: 51%;
+}
+
+.player-left {
+	top: 50%;
+	left: 20%;
+}
+
+.player-right {
+	top: 50%;
+	left: 80%;
+}
+
+.ball {
+	position: absolute;
+	width: 1%;
+	height: 2%;
+	background-color: #AA22AA;
+}
