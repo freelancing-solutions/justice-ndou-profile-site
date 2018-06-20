@@ -1,5 +1,5 @@
 // use this get request https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=3b2be7ef781441f4bde537854ffff2bf
-const apiKey = '3b2be7ef781441f4bde537854ffff2bf';
+const apiKey = '41e896a0a1c94b61903408fae1a49471';
 
 const advertCode = `
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -27,7 +27,7 @@ const thisTopics = '"Primes" OR "Geometry" OR "Space Geometry" OR "Elliptic Curv
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
 
 async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+this_pagesize+'&from='+this_date+'&apiKey='+apiKey);
+    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+this_pagesize+'&from='+this_date+'&apiKey='+apiKey,{ mode:'no-cors',});
     const json = await res.json();
     //store articles into localstorage
     main.innerHTML = json.articles.map(createArticle).join('\n');

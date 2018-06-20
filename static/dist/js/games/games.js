@@ -73,3 +73,18 @@ document.getElementById('checkersid').addEventListener("click", function () {
         }
     });
 });
+//matrixid
+document.getElementById('matrixid').addEventListener("click", function () {
+    const route = "matrix";
+    const my_data = '&route=' + route;
+    $.ajax({
+        type: 'post',
+        url: '/games',
+        data: my_data,
+        cache: false,
+        success: function (response) {
+                
+            $('#mainbodyinf').html(response);
+        }
+    });
+});

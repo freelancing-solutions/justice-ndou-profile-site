@@ -429,6 +429,18 @@ class MainRouterHandler(webapp2.RequestHandler):
         template = template_env.get_template("templates/games/pingpong/pingpong.html")
         context = {}
         self.response.write(template.render(context))
+
+    def RouteMatrix(self):
+        template = template_env.get_template("templates/games/matrix/matrix.html")
+        context = {}
+        self.response.write(template.render(context))
+
+    def RouteSnake(self):
+        template = template_env.get_template("templates/games/snake/snake.html")
+        context = {}
+        self.response.write(template.render(context))
+        
+        
         
         
         
@@ -729,6 +741,10 @@ class MainRouterHandler(webapp2.RequestHandler):
 
             elif ("games" in strURLlist) or ("games.html" in strURLlist):
                 self.RouteGames()
+            elif ("matrix" in strURLlist):
+                self.RouteMatrix()
+            elif ("snake" in strURLlist):
+                self.RouteSnake()
 
             elif ("500" in strURLlist):
                 self.Route500()
@@ -762,6 +778,8 @@ class MainRouterHandler(webapp2.RequestHandler):
                     self.RouteCheckers()
                 elif route == "pingpong":
                     self.RoutePingPong()
+                elif route == "matrix":
+                    self.RouteMatrix()
 
             elif ("dashboard" in strURLlist):
                 route = self.request.get('route')

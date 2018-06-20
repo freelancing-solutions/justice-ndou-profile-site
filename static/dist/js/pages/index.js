@@ -237,7 +237,7 @@ document.getElementById('checkrequeststatusid').addEventListener("click", functi
 // TODO- blog pages must be summaries with links to the original article///
 
 // use this get request https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=3b2be7ef781441f4bde537854ffff2bf
-const apiKey = '3b2be7ef781441f4bde537854ffff2bf';
+const apiKey = '41e896a0a1c94b61903408fae1a49471';
 
 const main = document.querySelector('main');
 const now = new Date();
@@ -256,7 +256,6 @@ async function updateNews(){
     const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+ this_pagesize +'&from='+this_date+'&apiKey='+apiKey);
     const json = await res.json();
     main.innerHTML = json.articles.map(createArticle).join('\n');
-
 }
 
 function createArticle(article){
@@ -279,4 +278,23 @@ function createArticle(article){
     `;
 }
 
-updateNews();
+//updateNews();
+
+
+/**
+ * document.getElementById('softwareprojectslinkid').addEventListener("click", function () {
+     clearActive();
+     this.classList.add("active");
+     $.ajax({
+         type: "get",
+         url: "/profiles/software-projects",
+         data: "",
+         cache: true,
+         success: function (html) {
+             $('#mainbodyinfdiv').html(html)
+         }
+     });
+ });
+ * 
+ * 
+ */

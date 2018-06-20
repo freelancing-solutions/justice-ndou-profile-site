@@ -92,7 +92,23 @@ document.getElementById('blogcreatepageid').addEventListener('click', function (
         data: my_data,
         cache: false,
         success: function(response){
-            $('#mainbodyinf').html(response)
+            $('#mainbodyinf').html(response);
+        }
+    })
+});
+
+document.getElementById('blogcreatepostid').addEventListener("click", function (event){
+    console.log(event);
+    const route = "createpost";
+    const my_data = "&route=" + route;
+
+    $.ajax({
+        type: "post",
+        url: "/dashboard",
+        data: my_data,
+        cache: false,
+        success: function(response){
+            $('#mainbodyinf').html(response);
         }
     })
 });
