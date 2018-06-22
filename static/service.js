@@ -60,12 +60,12 @@ toolbox.precache([
     '/static/dist/js/social/jquery.floating-social-share.min.js'
     ]);
 
-toolbox.router.default = toolbox.cacheFirst;
+toolbox.router.default = toolbox.networkFirst;
 
 //Routers
-toolbox.router.get('/',toolbox.cacheFirst);
-toolbox.router.get('/navigation/header', toolbox.cacheFirst);
-toolbox.router.get('/navigation/sidebar', toolbox.cacheFirst);
-toolbox.router.get('/navigation/footer', toolbox.cacheFirst);
-toolbox.router.get('/static/.*', toolbox.cacheFirst);
-toolbox.router.get('/.*', toolbox.cacheFirst);
+toolbox.router.get('/',toolbox.networkFirst);
+toolbox.router.get('/navigation/header', toolbox.networkFirst);
+toolbox.router.get('/navigation/sidebar', toolbox.networkFirst);
+toolbox.router.get('/navigation/footer', toolbox.networkFirst);
+toolbox.router.get('/static/.*', toolbox.networkFirst);
+toolbox.router.get('/.*', toolbox.networkFirst);

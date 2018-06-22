@@ -101,6 +101,12 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://justicendou.site/algorithms</loc>
+  <changefreq>always</changefreq>
+  <priority>0.80</priority>
+</url>
+
+<url>
   <loc>https://justicendou.site/contact</loc>
   <changefreq>always</changefreq>
   <priority>0.80</priority>
