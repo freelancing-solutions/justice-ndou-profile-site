@@ -20,11 +20,21 @@ const thisTopics = '"CyberAttacks" OR "Hacking Tools" OR "Linux" OR "Kali Linux"
 //updateNews();
 //}); https://newsapi.org/v2/everything?q=bitcoin&apiKey=3b2be7ef781441f4bde537854ffff2bf
 
-async function updateNews(){
-    const res = await fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+ this_pagesize +'&from='+this_date+'&apiKey='+apiKey);
-    const json = await res.json();
-    main.innerHTML = json.articles.map(createArticle).join('\n');
-
+async function updateNews()
+{
+    fetch('https://newsapi.org/v2/everything?q='+thisTopics+'&pageSize='+this_pagesize+'&from='+this_date+'&apiKey='+apiKey,{ mode:'no-cors',method:'GET'})    
+    .then(function(response){
+        if (!response.ok) {
+            throw Error(response.statusText);
+          }else{
+            const json = res.json();
+            main.innerHTML = json.articles.map(createArticle).join('\n');    
+          }
+    })
+    
+    .catch(function(error) {
+        console.log('Looks like there was a problem: \n', error);
+    });        
 }
 
 function createArticle(article){
