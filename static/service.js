@@ -3,7 +3,6 @@ importScripts('/static/sw/sw-toolbox.js');
 //Add Critical Resources to cache
 toolbox.precache([
     '/',
-
     '/static/dist/favicons/apple-icon-57x57.png',
     '/static/dist/favicons/apple-icon-60x60.png',
     '/static/dist/favicons/apple-icon-72x72.png',

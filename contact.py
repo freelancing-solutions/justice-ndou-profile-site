@@ -186,7 +186,7 @@ class ContactMessages(ndb.Expando):
 
     def sendResponse(self):
         try:
-            sender_address = ('support@sa-sms.appspot.com')
+            sender_address = ('support@justicendou.site')
             mail.send_mail(sender_address, self.strEmail, self.strSubject, self.strMessage)
             return True
         except:

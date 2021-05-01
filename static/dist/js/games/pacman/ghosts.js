@@ -1,69 +1,69 @@
-var GHOST_BLINKY_CANVAS_CONTEXT = null;
-var GHOST_BLINKY_POSITION_X = 276;
-var GHOST_BLINKY_POSITION_Y = 204;
-var GHOST_BLINKY_DIRECTION = 1;
-var GHOST_BLINKY_COLOR = "#ed1b24";
-var GHOST_BLINKY_MOVING_TIMER = -1;
-var GHOST_BLINKY_MOVING = false;
-var GHOST_BLINKY_BODY_STATE = 0;
-var GHOST_BLINKY_STATE = 0;
-var GHOST_BLINKY_EAT_TIMER = null;
-var GHOST_BLINKY_AFFRAID_TIMER = null;
-var GHOST_BLINKY_AFFRAID_STATE = 0;
-var GHOST_BLINKY_TUNNEL = false;
+let GHOST_BLINKY_CANVAS_CONTEXT = null;
+let GHOST_BLINKY_POSITION_X = 276;
+let GHOST_BLINKY_POSITION_Y = 204;
+let GHOST_BLINKY_DIRECTION = 1;
+let GHOST_BLINKY_COLOR = "#ed1b24";
+let GHOST_BLINKY_MOVING_TIMER = -1;
+let GHOST_BLINKY_MOVING = false;
+let GHOST_BLINKY_BODY_STATE = 0;
+let GHOST_BLINKY_STATE = 0;
+let GHOST_BLINKY_EAT_TIMER = null;
+let GHOST_BLINKY_AFFRAID_TIMER = null;
+let GHOST_BLINKY_AFFRAID_STATE = 0;
+let GHOST_BLINKY_TUNNEL = false;
 
-var GHOST_PINKY_CANVAS_CONTEXT = null;
-var GHOST_PINKY_POSITION_X = 276;
-var GHOST_PINKY_POSITION_Y = 258;
-var GHOST_PINKY_DIRECTION = 2;
-var GHOST_PINKY_COLOR = "#feaec9";
-var GHOST_PINKY_MOVING_TIMER = -1;
-var GHOST_PINKY_MOVING = false;
-var GHOST_PINKY_BODY_STATE = 1;
-var GHOST_PINKY_STATE = 0;
-var GHOST_PINKY_EAT_TIMER = null;
-var GHOST_PINKY_AFFRAID_TIMER = null;
-var GHOST_PINKY_AFFRAID_STATE = 0;
-var GHOST_PINKY_TUNNEL = false;
+let GHOST_PINKY_CANVAS_CONTEXT = null;
+let GHOST_PINKY_POSITION_X = 276;
+let GHOST_PINKY_POSITION_Y = 258;
+let GHOST_PINKY_DIRECTION = 2;
+let GHOST_PINKY_COLOR = "#feaec9";
+let GHOST_PINKY_MOVING_TIMER = -1;
+let GHOST_PINKY_MOVING = false;
+let GHOST_PINKY_BODY_STATE = 1;
+let GHOST_PINKY_STATE = 0;
+let GHOST_PINKY_EAT_TIMER = null;
+let GHOST_PINKY_AFFRAID_TIMER = null;
+let GHOST_PINKY_AFFRAID_STATE = 0;
+let GHOST_PINKY_TUNNEL = false;
 
-var GHOST_INKY_CANVAS_CONTEXT = null;
-var GHOST_INKY_POSITION_X = 238;
-var GHOST_INKY_POSITION_Y = 258;
-var GHOST_INKY_DIRECTION = 3;
-var GHOST_INKY_COLOR = "#4adecb";
-var GHOST_INKY_MOVING_TIMER = -1;
-var GHOST_INKY_MOVING = false;
-var GHOST_INKY_BODY_STATE = 2;
-var GHOST_INKY_STATE = 0;
-var GHOST_INKY_EAT_TIMER = null;
-var GHOST_INKY_AFFRAID_TIMER = null;
-var GHOST_INKY_AFFRAID_STATE = 0;
-var GHOST_INKY_TUNNEL = false;
+let GHOST_INKY_CANVAS_CONTEXT = null;
+let GHOST_INKY_POSITION_X = 238;
+let GHOST_INKY_POSITION_Y = 258;
+let GHOST_INKY_DIRECTION = 3;
+let GHOST_INKY_COLOR = "#4adecb";
+let GHOST_INKY_MOVING_TIMER = -1;
+let GHOST_INKY_MOVING = false;
+let GHOST_INKY_BODY_STATE = 2;
+let GHOST_INKY_STATE = 0;
+let GHOST_INKY_EAT_TIMER = null;
+let GHOST_INKY_AFFRAID_TIMER = null;
+let GHOST_INKY_AFFRAID_STATE = 0;
+let GHOST_INKY_TUNNEL = false;
 
-var GHOST_CLYDE_CANVAS_CONTEXT = null;
-var GHOST_CLYDE_POSITION_X = 314;
-var GHOST_CLYDE_POSITION_Y = 258;
-var GHOST_CLYDE_DIRECTION = 4;
-var GHOST_CLYDE_COLOR = "#f99c00";
-var GHOST_CLYDE_MOVING_TIMER = -1;
-var GHOST_CLYDE_MOVING = false;
-var GHOST_CLYDE_BODY_STATE = 3;
-var GHOST_CLYDE_STATE = 0;
-var GHOST_CLYDE_EAT_TIMER = null;
-var GHOST_CLYDE_AFFRAID_TIMER = null;
-var GHOST_CLYDE_AFFRAID_STATE = 0;
-var GHOST_CLYDE_TUNNEL = false;
+let GHOST_CLYDE_CANVAS_CONTEXT = null;
+let GHOST_CLYDE_POSITION_X = 314;
+let GHOST_CLYDE_POSITION_Y = 258;
+let GHOST_CLYDE_DIRECTION = 4;
+let GHOST_CLYDE_COLOR = "#f99c00";
+let GHOST_CLYDE_MOVING_TIMER = -1;
+let GHOST_CLYDE_MOVING = false;
+let GHOST_CLYDE_BODY_STATE = 3;
+let GHOST_CLYDE_STATE = 0;
+let GHOST_CLYDE_EAT_TIMER = null;
+let GHOST_CLYDE_AFFRAID_TIMER = null;
+let GHOST_CLYDE_AFFRAID_STATE = 0;
+let GHOST_CLYDE_TUNNEL = false;
 
-var GHOST_AFFRAID_COLOR = "#2d3eff";
-var GHOST_AFFRAID_FINISH_COLOR = "#fff";
-var GHOST_POSITION_STEP = 2;
-var GHOST_MOVING_SPEED = 15;
-var GHOST_TUNNEL_MOVING_SPEED = 35;
-var GHOST_AFFRAID_MOVING_SPEED = 40;
-var GHOST_EAT_MOVING_SPEED = 6;
-var GHOST_AFFRAID_TIME = 8500;
-var GHOST_EAT_TIME = 5500;
-var GHOST_BODY_STATE_MAX = 6;
+let GHOST_AFFRAID_COLOR = "#2d3eff";
+let GHOST_AFFRAID_FINISH_COLOR = "#fff";
+let GHOST_POSITION_STEP = 2;
+let GHOST_MOVING_SPEED = 15;
+let GHOST_TUNNEL_MOVING_SPEED = 35;
+let GHOST_AFFRAID_MOVING_SPEED = 40;
+let GHOST_EAT_MOVING_SPEED = 6;
+let GHOST_AFFRAID_TIME = 8500;
+let GHOST_EAT_TIME = 5500;
+let GHOST_BODY_STATE_MAX = 6;
 
 function initGhosts() { 
 	initGhost('blinky');
@@ -72,7 +72,7 @@ function initGhosts() {
 	initGhost('clyde');
 }
 function initGhost(ghost) { 
-	var canvas = document.getElementById('canvas-ghost-' + ghost);
+	let canvas = document.getElementById('canvas-ghost-' + ghost);
 	canvas.setAttribute('width', '550');
 	canvas.setAttribute('height', '550');
 	if (canvas.getContext) { 
@@ -138,7 +138,7 @@ function drawGhosts() {
 }
 function drawGhost(ghost) { 
 
-	var ctx = getGhostCanevasContext(ghost);
+	let ctx = getGhostCanevasContext(ghost);
 	
 	if (eval('GHOST_' + ghost.toUpperCase() + '_STATE === 0')) { 
 		eval('ctx.fillStyle = GHOST_' + ghost.toUpperCase() + '_COLOR');
@@ -265,7 +265,7 @@ function moveGhost(ghost) {
 	if (eval('GHOST_' + ghost.toUpperCase() + '_MOVING === false')) { 
 		eval('GHOST_' + ghost.toUpperCase() + '_MOVING = true;');
 
-		var speed = -1;
+		let speed = -1;
 		if (eval('GHOST_' + ghost.toUpperCase() + '_STATE === 1')) { 
 			speed =  GHOST_AFFRAID_MOVING_SPEED;
 		} else if (eval('GHOST_' + ghost.toUpperCase() + '_STATE === 0')) { 
@@ -283,7 +283,7 @@ function moveGhost(ghost) {
 		changeDirection(ghost);
 		
 		if ( eval('GHOST_' + ghost.toUpperCase() + '_AFFRAID_TIMER !== null')) { 
-			var remain = eval('GHOST_' + ghost.toUpperCase() + '_AFFRAID_TIMER.remain();');
+			let remain = eval('GHOST_' + ghost.toUpperCase() + '_AFFRAID_TIMER.remain();');
 			if ((remain >= 2500 && remain < 3000) || (remain >= 1500 && remain <= 2000) || (remain >= 500 && remain <= 1000) || (remain < 0)) { 
 				eval('GHOST_' + ghost.toUpperCase() + '_AFFRAID_STATE = 1;')
 			} else if ((remain > 2000 && remain < 2500) || (remain > 1000 && remain < 1500) || (remain >= 0 && remain < 500)) { 
@@ -355,21 +355,21 @@ function isInTunnel(ghost) {
 
 
 function changeDirection(ghost) { 
-	eval('var direction = GHOST_' + ghost.toUpperCase() + '_DIRECTION');
-	eval('var state = GHOST_' + ghost.toUpperCase() + '_STATE');
-	eval('var ghostX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
-	eval('var ghostY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
+	eval('let direction = GHOST_' + ghost.toUpperCase() + '_DIRECTION');
+	eval('let state = GHOST_' + ghost.toUpperCase() + '_STATE');
+	eval('let ghostX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
+	eval('let ghostY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
 	
-	var tryDirection = oneDirection();
+	let tryDirection = oneDirection();
 	
 	if (state === 0 || state === 1) { 
 		if (ghostX != 276 && ghostY != 258) { 
-			var pacmanX = PACMAN_POSITION_X;
-			var pacmanY = PACMAN_POSITION_Y;
-			var axe = oneAxe();
+			let pacmanX = PACMAN_POSITION_X;
+			let pacmanY = PACMAN_POSITION_Y;
+			let axe = oneAxe();
 			if (ghost === "blinky") { 
 			
-				var nothing = whatsYourProblem();
+				let nothing = whatsYourProblem();
 				if (nothing < 6) { 
 					tryDirection = getRightDirection(axe, ghostX, ghostY, pacmanX, pacmanY);
 					if ( !(canMoveGhost(ghost, tryDirection) && (direction != tryDirection -2 && direction != tryDirection + 2)) ) { 
@@ -381,7 +381,7 @@ function changeDirection(ghost) {
 				
 			} else if (ghost === "pinky") { 
 			
-				var nothing = whatsYourProblem();
+				let nothing = whatsYourProblem();
 				if (nothing < 3) { 
 				
 					tryDirection = getRightDirection(axe, ghostX, ghostY, pacmanX, pacmanY);
@@ -394,7 +394,7 @@ function changeDirection(ghost) {
 				}
 				
 			} else if (ghost === "inky") { 
-				var good = anyGoodIdea();
+				let good = anyGoodIdea();
 				if (good < 3) { 
 					tryDirection = getRightDirection(axe, ghostX, ghostY, pacmanX, pacmanY);
 					if ( !(canMoveGhost(ghost, tryDirection) && (direction != tryDirection -2 && direction != tryDirection + 2)) ) { 
@@ -409,7 +409,7 @@ function changeDirection(ghost) {
 			tryDirection = reverseDirection(tryDirection);
 		}
 	} else { 
-		var axe = oneAxe();
+		let axe = oneAxe();
 		tryDirection = getRightDirectionForHome(axe, ghostX, ghostY);
 		if (canMoveGhost(ghost, tryDirection) && (direction != tryDirection -2 && direction != tryDirection + 2)) { 
 		
@@ -426,8 +426,8 @@ function changeDirection(ghost) {
 }
 
 function getRightDirectionForHome(axe, ghostX, ghostY) { 
-	var homeX = 276;
-	var homeY = 204;
+	let homeX = 276;
+	let homeY = 204;
 	
 	if (ghostY === 204 && ghostX === 276) { 	
 		return 2;
@@ -471,7 +471,7 @@ function reverseDirection(direction) {
 
 function eraseGhost(ghost) { 
 
-	var ctx = getGhostCanevasContext(ghost);
+	let ctx = getGhostCanevasContext(ghost);
 	
 	eval('ctx.clearRect(GHOST_' + ghost.toUpperCase() + '_POSITION_X - 17, GHOST_' + ghost.toUpperCase() + '_POSITION_Y - 17, 34, 34)');
 }
@@ -485,11 +485,11 @@ function eraseGhosts() {
 
 function canMoveGhost(ghost, direction) { 
 	if (!direction) { 
-		eval('var direction = GHOST_' + ghost.toUpperCase() + '_DIRECTION');
+		eval('let direction = GHOST_' + ghost.toUpperCase() + '_DIRECTION');
 	}
-	eval('var positionX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
-	eval('var positionY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
-	eval('var state = GHOST_' + ghost.toUpperCase() + '_STATE');
+	eval('let positionX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
+	eval('let positionY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
+	eval('let state = GHOST_' + ghost.toUpperCase() + '_STATE');
 	
 	if (positionX === 276 && positionY === 204 && direction === 2 && state === 0) return false;
 
@@ -503,14 +503,14 @@ function canMoveGhost(ghost, direction) {
 		positionY -= GHOST_POSITION_STEP;
 	}
 	
-	for (var i = 0, imax = PATHS.length; i < imax; i ++) { 
+	for (let i = 0, imax = PATHS.length; i < imax; i ++) { 
 	
-		var p = PATHS[i];
+		let p = PATHS[i];
 	
-		var startX = p.split("-")[0].split(",")[0];
-		var startY = p.split("-")[0].split(",")[1];
-		var endX = p.split("-")[1].split(",")[0];
-		var endY = p.split("-")[1].split(",")[1];
+		let startX = p.split("-")[0].split(",")[0];
+		let startY = p.split("-")[0].split(",")[1];
+		let endX = p.split("-")[1].split(",")[0];
+		let endY = p.split("-")[1].split(",")[1];
 
 		if (positionX >= startX && positionX <= endX && positionY >= startY && positionY <= endY) { 
 			return true;
@@ -524,12 +524,12 @@ function oneDirection() {
 	return Math.floor( Math.random() * ( 4 - 1 + 1 ) + 1 );
 }
 function oneDirectionX() { 
-	var direction = oneDirection();
+	let direction = oneDirection();
 	if (direction === 4 || direction === 2) direction -= 1;
 	return direction;
 }
 function oneDirectionY() { 
-	var direction = oneDirection();
+	let direction = oneDirection();
 	if (direction === 3 || direction === 1) direction -= 1;
 	return direction;
 }
@@ -622,8 +622,8 @@ function drawHelperGhost(ctx, x, y, d, b, s, a) {
 		ctx.fill();
 	}
 
-	var eyesX = 0;
-	var eyesY = 0;
+	let eyesX = 0;
+	let eyesY = 0;
 	
 	if (d === 4) { 
 		eyesY = -5;

@@ -1,8 +1,8 @@
-var PATHS = new Array();
-var PATHS_CANVAS_CONTEXT = null;
+let PATHS = new Array();
+let PATHS_CANVAS_CONTEXT = null;
 
 function initPaths() { 
-	var canvas = document.getElementById('canvas-paths');
+	let canvas = document.getElementById('canvas-paths');
 	canvas.setAttribute('width', '550');
 	canvas.setAttribute('height', '550');
 	if (canvas.getContext) { 
@@ -69,18 +69,18 @@ function getPathsCanevasContext() {
 }
 
 function drawPaths() { 
-	var ctx = getPathsCanevasContext();
+	let ctx = getPathsCanevasContext();
 	
 	ctx.strokeStyle = "red";
 	
-	for (var i = 0, imax = PATHS.length; i < imax; i ++) { 
+	for (let i = 0, imax = PATHS.length; i < imax; i ++) { 
 	
-		var p = PATHS[i];
+		let p = PATHS[i];
 	
-		var startX = p.split("-")[0].split(",")[0];
-		var startY = p.split("-")[0].split(",")[1];
-		var endX = p.split("-")[1].split(",")[0];
-		var endY = p.split("-")[1].split(",")[1];
+		let startX = p.split("-")[0].split(",")[0];
+		let startY = p.split("-")[0].split(",")[1];
+		let endX = p.split("-")[1].split(",")[0];
+		let endY = p.split("-")[1].split(",")[1];
 		
 		ctx.beginPath();
 		ctx.moveTo(startX, startY);

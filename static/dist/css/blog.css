@@ -9,7 +9,7 @@ div.polaroid {
 
 div.polatext {
   text-align: left;
-  word-break: break-all;
+  word-break: keep-all;
   padding: 10px 20px;
   
 }

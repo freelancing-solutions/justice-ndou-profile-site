@@ -33,6 +33,7 @@ class ProfilesHandler(webapp2.RequestHandler):
             template = template_env.get_template('templates/justice-ndou/personal-profile/services/services.html')
             context = {}
             self.response.write(template.render(context))
+            
 
 
 app = webapp2.WSGIApplication([

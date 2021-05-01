@@ -1,14 +1,13 @@
 function simulateKeyup(code) { 
-    var e = jQuery.Event("keyup");
+    let e = jQuery.Event("keyup");
     e.keyCode = code;
     jQuery('body').trigger(e);
 }
 function simulateKeydown(code) { 
-    var e = jQuery.Event("keydown");
+    let e = jQuery.Event("keydown");
     e.keyCode = code;
     jQuery('body').trigger(e);
 }
-
 $(document).ready(function() { 
     //$.mobile.loading().hide();
     loadAllSound();
@@ -17,10 +16,12 @@ $(document).ready(function() {
     
     initHome();
     
-    $(".sound").click(function(e) { 
+    $(".sound").click(function(e) {
+
         e.stopPropagation();
-        
-        var sound = $(this).attr("data-sound");
+
+        let sound = $(this).attr("data-sound");
+
         if ( sound === "on" ) { 
             $(".sound").attr("data-sound", "off");
             $(".sound").find("img").attr("src", "img/sound-off.png");
@@ -31,7 +32,6 @@ $(document).ready(function() {
             GROUP_SOUND.unmute();
         }
     });
-    
     $(".help-button, #help").click(function(e) { 
         e.stopPropagation();
         if (!PACMAN_DEAD && !LOCK && !GAMEOVER) { 
@@ -41,17 +41,15 @@ $(document).ready(function() {
                 if ( $("#panel").css("display") !== "none") { 
                     pauseGame();
                 }
-            } else { 
+            } else {
                 $('#help').fadeOut("slow");
                 $(".help-button").show();
             }
         }
     });
-    
     $(".github").click(function(e) { 
         e.stopPropagation();
     });
-    
     $("#home").on("click touchstart", function(e) { 
         if ( $('#help').css("display") === "none") { 
             e.preventDefault();

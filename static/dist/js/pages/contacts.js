@@ -22,6 +22,7 @@ var thisSendMessageButt = document.getElementById("SendMessageButt");
 var thisContactFormButt = document.getElementById("ContactFormButt");
 var thisSupportTicketsButt = document.getElementById("SupportTicketsButt");
 var thisAddressButt = document.getElementById("AddressButt");
+
 //Send Message Handler
 thisSendMessageButt.addEventListener("click", function() {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -36,42 +37,44 @@ thisSendMessageButt.addEventListener("click", function() {
                 var struid = user.uid;
 
                 var vstrChoice = 0;
-                var varstrNames = document.getElementById('strnames').value;
-                var varstrCell = document.getElementById('strcell').value;
-                var varstrEmail = document.getElementById('stremail').value;
-                var varstrsubject = document.getElementById('strsubject').value;
-                var varstrmessage = document.getElementById('strmessage').value;
+                var varstrNames = document.getElementById("strnames").value;
+                var varstrCell = document.getElementById("strcell").value;
+                var varstrEmail = document.getElementById("stremail").value;
+                var varstrsubject = document.getElementById("strsubject").value;
+                var varstrmessage = document.getElementById("strmessage").value;
 
-                var dataString = '&vstrChoice=' + vstrChoice + '&vstrNames=' + varstrNames + '&vstrCell=' + varstrCell + '&vstrEmail=' + varstrEmail +
-                    '&vstrSubject=' + varstrsubject + '&vstrMessage=' + varstrmessage +
-                    '&vstrUserID=' + struid +  '&vstrAccessToken=' + accessToken;
+                var dataString = "&vstrChoice=" + vstrChoice + "&vstrNames=" + varstrNames + "&vstrCell=" + varstrCell + "&vstrEmail=" + varstrEmail +
+                    "&vstrSubject=" + varstrsubject + "&vstrMessage=" + varstrmessage +
+                    "&vstrUserID=" + struid +  "&vstrAccessToken=" + accessToken;
                 $.ajax({
                     type: "post",
                     url: "/contact",
                     data: dataString,
                     cache: false,
                     success: function (html) {
-                        $('#FormResponseDiv').html(html)
+                        $("#FormResponseDiv").html(html);
                     }
-                });
-            })
-        }else{
+                })
+         
+            }) }
+            
+        else{
                 var vstrChoice = 0;
-                var varstrNames = document.getElementById('strnames').value;
-                var varstrCell = document.getElementById('strcell').value;
-                var varstrEmail = document.getElementById('stremail').value;
-                var varstrsubject = document.getElementById('strsubject').value;
-                var varstrmessage = document.getElementById('strmessage').value;
+                var varstrNames = document.getElementById("strnames").value;
+                var varstrCell = document.getElementById("strcell").value;
+                var varstrEmail = document.getElementById("stremail").value;
+                var varstrsubject = document.getElementById("strsubject").value;
+                var varstrmessage = document.getElementById("strmessage").value;
 
-                var dataString = '&vstrChoice=' + vstrChoice + '&vstrNames=' + varstrNames + '&vstrCell=' + varstrCell + '&vstrEmail=' + varstrEmail +
-                    '&vstrSubject=' + varstrsubject + '&vstrMessage=' + varstrmessage ;
+                var dataString = "&vstrChoice=" + vstrChoice + "&vstrNames=" + varstrNames + "&vstrCell=" + varstrCell + "&vstrEmail=" + varstrEmail +
+                    "&vstrSubject=" + varstrsubject + "&vstrMessage=" + varstrmessage ;
                 $.ajax({
                     type: "post",
                     url: "/contact",
                     data: dataString,
                     cache: false,
                     success: function (html) {
-                        $('#FormResponseDiv').html(html)
+                        $("#FormResponseDiv").html(html)
                     }
                 });
 
@@ -93,27 +96,27 @@ thisContactFormButt.addEventListener("click",function () {
                 var struid = user.uid;
 
                 var vstrChoice = 1;
-                var dataString = '&vstrChoice=' + vstrChoice + '&vstrUserID=' + struid + '&vstrEmail=' + email + '&vstrAccessToken=' + accessToken;
+                var dataString = "&vstrChoice=" + vstrChoice + "&vstrUserID=" + struid + "&vstrEmail=" + email + "&vstrAccessToken=" + accessToken;
                 $.ajax({
                     type: "post",
                     url: "/contact",
                     data: dataString,
                     cache: false,
                     success: function (html) {
-                        $('#ContactINFDIV').html(html)
+                        $("#ContactINFDIV").html(html)
                     }
                 });
             })
         }else{
                 var vstrChoice = 1;
-                var dataString = '&vstrChoice=' + vstrChoice;
+                var dataString = "&vstrChoice=" + vstrChoice;
                 $.ajax({
                     type: "post",
                     url: "/contact",
                     data: dataString,
                     cache: false,
                     success: function (html) {
-                        $('#ContactINFDIV').html(html)
+                        $("#ContactINFDIV").html(html)
                     }
                 });
 
@@ -134,28 +137,28 @@ thisSupportTicketsButt.addEventListener("click", function() {
                 var struid = user.uid;
 
                 var vstrChoice = 2;
-                var dataString = '&vstrChoice=' + vstrChoice + '&vstrUserID=' + struid + '&vstrEmail=' + email + '&vstrAccessToken=' + accessToken;
+                var dataString = "&vstrChoice=" + vstrChoice + "&vstrUserID=" + struid + "&vstrEmail=" + email + "&vstrAccessToken=" + accessToken;
                 $.ajax({
                     type: "post",
                     url: "/contact",
                     data: dataString,
                     cache: false,
                     success: function (html) {
-                        $('#ContactINFDIV').html(html)
+                        $("#ContactINFDIV").html(html)
                     }
                 });
 
             })
         }else{
                 var vstrChoice = 2;
-                var dataString = '&vstrChoice=' + vstrChoice;
+                var dataString = "&vstrChoice=" + vstrChoice;
                 $.ajax({
                     type: "post",
                     url: "/contact",
                     data: dataString,
                     cache: false,
                     success: function (html) {
-                        $('#ContactINFDIV').html(html)
+                        $("#ContactINFDIV").html(html)
                     }
                 });
         }
@@ -175,27 +178,27 @@ thisAddressButt.addEventListener("click", function () {
                 var struid = user.uid;
 
                 var vstrChoice = 4;
-                var dataString = '&vstrChoice=' + vstrChoice  + '&vstrUserID=' + struid + '&vstrEmail=' + email + '&vstrAccessToken=' + accessToken;
+                var dataString = "&vstrChoice=" + vstrChoice  + "&vstrUserID=" + struid + "&vstrEmail=" + email + "&vstrAccessToken=" + accessToken;
                 $.ajax({
                     type: "post",
                     url: "/contact",
                     data: dataString,
                     cache: false,
                     success: function (Response) {
-                        $('#ContactINFDIV').html(Response)
+                        $("#ContactINFDIV").html(Response)
                     }
                 })
             })
         }else{
                 var vstrChoice = 4;
-                var dataString = '&vstrChoice=' + vstrChoice ;
+                var dataString = "&vstrChoice=" + vstrChoice ;
                 $.ajax({
                     type: "post",
                     url: "/contact",
                     data: dataString,
                     cache: false,
                     success: function (Response) {
-                        $('#ContactINFDIV').html(Response)
+                        $("#ContactINFDIV").html(Response)
                     }
                 })
 

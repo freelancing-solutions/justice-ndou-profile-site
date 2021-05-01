@@ -3,8 +3,6 @@
 var thisCreateTicketButt = document.getElementById("CreateTicketButt");
 thisCreateTicketButt.addEventListener("click", function(){
 
-
-
                 var vstrChoice = 3;
                 var vstrNames = document.getElementById('strNames').value;
                 var vstrSurname = document.getElementById('strSurname').value;

@@ -1,51 +1,51 @@
-var HOME = false;
+let HOME = false;
 
-var HOME_PRESENTATION_TIMER = -1;
-var HOME_PRESENTATION_STATE = 0;
+let HOME_PRESENTATION_TIMER = -1;
+let HOME_PRESENTATION_STATE = 0;
 
-var HOME_TRAILER_TIMER = -1;
-var HOME_TRAILER_STATE = 0;
+let HOME_TRAILER_TIMER = -1;
+let HOME_TRAILER_STATE = 0;
 
-var PACMAN_TRAILER_CANVAS_CONTEXT = null;
-var PACMAN_TRAILER_DIRECTION = 3;
-var PACMAN_TRAILER_POSITION_X = 600;
-var PACMAN_TRAILER_POSITION_Y = 25;
-var PACMAN_TRAILER_POSITION_STEP = 3;
-var PACMAN_TRAILER_MOUNTH_STATE = 3;
-var PACMAN_TRAILER_MOUNTH_STATE_MAX = 6;
-var PACMAN_TRAILER_SIZE = 16;
+let PACMAN_TRAILER_CANVAS_CONTEXT = null;
+let PACMAN_TRAILER_DIRECTION = 3;
+let PACMAN_TRAILER_POSITION_X = 600;
+let PACMAN_TRAILER_POSITION_Y = 25;
+let PACMAN_TRAILER_POSITION_STEP = 3;
+let PACMAN_TRAILER_MOUNTH_STATE = 3;
+let PACMAN_TRAILER_MOUNTH_STATE_MAX = 6;
+let PACMAN_TRAILER_SIZE = 16;
 
-var GHOST_TRAILER_CANVAS_CONTEXT = null;
-var GHOST_TRAILER_BODY_STATE_MAX = 6;
-var GHOST_TRAILER_POSITION_STEP = 3;
+let GHOST_TRAILER_CANVAS_CONTEXT = null;
+let GHOST_TRAILER_BODY_STATE_MAX = 6;
+let GHOST_TRAILER_POSITION_STEP = 3;
 
-var GHOST_BLINKY_TRAILER_POSITION_X = 1000;
-var GHOST_BLINKY_TRAILER_POSITION_Y = 25;
-var GHOST_BLINKY_TRAILER_DIRECTION = 3;
-var GHOST_BLINKY_TRAILER_COLOR = "#ed1b24";
-var GHOST_BLINKY_TRAILER_BODY_STATE = 0;
-var GHOST_BLINKY_TRAILER_STATE = 0;
+let GHOST_BLINKY_TRAILER_POSITION_X = 1000;
+let GHOST_BLINKY_TRAILER_POSITION_Y = 25;
+let GHOST_BLINKY_TRAILER_DIRECTION = 3;
+let GHOST_BLINKY_TRAILER_COLOR = "#ed1b24";
+let GHOST_BLINKY_TRAILER_BODY_STATE = 0;
+let GHOST_BLINKY_TRAILER_STATE = 0;
 
-var GHOST_PINKY_TRAILER_POSITION_X = 1035;
-var GHOST_PINKY_TRAILER_POSITION_Y = 25;
-var GHOST_PINKY_TRAILER_DIRECTION = 3;
-var GHOST_PINKY_TRAILER_COLOR = "#feaec9";
-var GHOST_PINKY_TRAILER_BODY_STATE = 1;
-var GHOST_PINKY_TRAILER_STATE = 0;
+let GHOST_PINKY_TRAILER_POSITION_X = 1035;
+let GHOST_PINKY_TRAILER_POSITION_Y = 25;
+let GHOST_PINKY_TRAILER_DIRECTION = 3;
+let GHOST_PINKY_TRAILER_COLOR = "#feaec9";
+let GHOST_PINKY_TRAILER_BODY_STATE = 1;
+let GHOST_PINKY_TRAILER_STATE = 0;
 
-var GHOST_INKY_TRAILER_POSITION_X = 1070;
-var GHOST_INKY_TRAILER_POSITION_Y = 25;
-var GHOST_INKY_TRAILER_DIRECTION = 3;
-var GHOST_INKY_TRAILER_COLOR = "#4adecb";
-var GHOST_INKY_TRAILER_BODY_STATE = 2;
-var GHOST_INKY_TRAILER_STATE = 0;
+let GHOST_INKY_TRAILER_POSITION_X = 1070;
+let GHOST_INKY_TRAILER_POSITION_Y = 25;
+let GHOST_INKY_TRAILER_DIRECTION = 3;
+let GHOST_INKY_TRAILER_COLOR = "#4adecb";
+let GHOST_INKY_TRAILER_BODY_STATE = 2;
+let GHOST_INKY_TRAILER_STATE = 0;
 
-var GHOST_CLYDE_TRAILER_POSITION_X = 1105;
-var GHOST_CLYDE_TRAILER_POSITION_Y = 25;
-var GHOST_CLYDE_TRAILER_DIRECTION = 3;
-var GHOST_CLYDE_TRAILER_COLOR = "#f99c00";
-var GHOST_CLYDE_TRAILER_BODY_STATE = 3;
-var GHOST_CLYDE_TRAILER_STATE = 0;
+let GHOST_CLYDE_TRAILER_POSITION_X = 1105;
+let GHOST_CLYDE_TRAILER_POSITION_Y = 25;
+let GHOST_CLYDE_TRAILER_DIRECTION = 3;
+let GHOST_CLYDE_TRAILER_COLOR = "#f99c00";
+let GHOST_CLYDE_TRAILER_BODY_STATE = 3;
+let GHOST_CLYDE_TRAILER_STATE = 0;
 
 function initHome() { 
 	HOME = true;
@@ -61,16 +61,16 @@ function initHome() {
 	
 	$('#help').fadeOut("slow");
 	
-	var ctx = null;
-	var canvas = document.getElementById('canvas-home-title-pacman');
+	let ctx = null;
+	let canvas = document.getElementById('canvas-home-title-pacman');
 	canvas.setAttribute('width', '115');
 	canvas.setAttribute('height', '100');
 	if (canvas.getContext) { 
 		ctx = canvas.getContext('2d');
 	}
 	
-	var x = 50;
-	var y = 50;
+	let x = 50;
+	let y = 50;
 	
 	ctx.fillStyle = "#fff200";
 	ctx.beginPath();
@@ -185,7 +185,7 @@ function nextSequencePresentation() {
 
 function startTrailer() { 
 
-	var canvas = document.getElementById('trailer');
+	let canvas = document.getElementById('trailer');
 	canvas.setAttribute('width', '500');
 	canvas.setAttribute('height', '50');
 	if (canvas.getContext) { 
@@ -298,7 +298,7 @@ function getGhostsTrailerCanevasContext() {
 	return PACMAN_TRAILER_CANVAS_CONTEXT;
 }
 function drawGhostsTrailer() { 
-	var ctx = getGhostsTrailerCanevasContext();
+	let ctx = getGhostsTrailerCanevasContext();
 	
 	if (GHOST_BLINKY_TRAILER_STATE === 1) { 
 		ctx.fillStyle = GHOST_AFFRAID_COLOR;
@@ -330,7 +330,7 @@ function drawGhostsTrailer() {
 }
 function eraseGhostsTrailer(ghost) { 
 
-	var ctx = getGhostsTrailerCanevasContext();
+	let ctx = getGhostsTrailerCanevasContext();
 	
 	ctx.clearRect(GHOST_BLINKY_TRAILER_POSITION_X - 17, GHOST_BLINKY_TRAILER_POSITION_Y - 17, 34, 34);
 	ctx.clearRect(GHOST_PINKY_TRAILER_POSITION_X - 17, GHOST_BLINKY_TRAILER_POSITION_Y - 17, 34, 34);
@@ -343,15 +343,15 @@ function getPacmanTrailerCanevasContext() {
 }
 function drawPacmanTrailer() { 
 
-	var ctx = getPacmanTrailerCanevasContext();
+	let ctx = getPacmanTrailerCanevasContext();
 	
 	ctx.fillStyle = "#fff200";
 	ctx.beginPath();
 	
-	var startAngle = 0;
-	var endAngle = 2 * Math.PI;
-	var lineToX = PACMAN_TRAILER_POSITION_X;
-	var lineToY = PACMAN_TRAILER_POSITION_Y;
+	let startAngle = 0;
+	let endAngle = 2 * Math.PI;
+	let lineToX = PACMAN_TRAILER_POSITION_X;
+	let lineToY = PACMAN_TRAILER_POSITION_Y;
 	if (PACMAN_TRAILER_DIRECTION === 1) { 
 		startAngle = (0.35 - (PACMAN_TRAILER_MOUNTH_STATE * 0.05)) * Math.PI;
 		endAngle = (1.65 + (PACMAN_TRAILER_MOUNTH_STATE * 0.05)) * Math.PI;
@@ -376,6 +376,6 @@ function drawPacmanTrailer() {
 }
 function erasePacmanTrailer() { 
 
-	var ctx = getPacmanTrailerCanevasContext();
+	let ctx = getPacmanTrailerCanevasContext();
 	ctx.clearRect(PACMAN_TRAILER_POSITION_X - PACMAN_TRAILER_SIZE, PACMAN_TRAILER_POSITION_Y - PACMAN_TRAILER_SIZE, PACMAN_TRAILER_SIZE * 2, PACMAN_TRAILER_SIZE * 2);
 }

@@ -3,28 +3,68 @@ var thisContactFormButt = document.getElementById("ContactFormButt");
 var thisSupportTicketsButt = document.getElementById("SupportTicketsButt");
 var thisAddressButt = document.getElementById("AddressButt");
 //Send Message Handler
+
 thisSendMessageButt.addEventListener("click", function() {
 
 
-                var vstrChoice = 0;
-                var varstrNames = document.getElementById('strnames').value;
-                var varstrCell = document.getElementById('strcell').value;
-                var varstrEmail = document.getElementById('stremail').value;
-                var varstrsubject = document.getElementById('strsubject').value;
-                var varstrmessage = document.getElementById('strmessage').value;
+                var route = 0;
+                var names = document.getElementById('strnames').value;
+                var cell = document.getElementById('strcell').value;
+                var email = document.getElementById('stremail').value;
+                var subject = document.getElementById('strsubject').value;
+                var message = document.getElementById('strmessage').value;
 
-                var dataString = '&vstrChoice=' + vstrChoice + '&vstrNames=' + varstrNames + '&vstrCell=' + varstrCell + '&vstrEmail=' + varstrEmail +
-                    '&vstrSubject=' + varstrsubject + '&vstrMessage=' + varstrmessage;
-                $.ajax({
-                    type: "post",
-                    url: "/contact",
-                    data: dataString,
-                    cache: false,
-                    success: function (html) {
-                        $('#FormResponseDiv').html(html)
+
+                function verify_message() {
+
+                    if (isEmpty(names) == true){
+
+                        return false
                     }
-                });
+
+                    if (isCell(cell) == false){
+                        return false
+                    }
+
+                    if (validateEmail(email) == false){
+                        return false
+                    }
+
+                    if (isEmpty(subject) == true){
+                        return false
+                    }
+
+                    if (isEmpty(message) == true ){
+                        return false
+                    }
+
+                    return true
+
+                }
+
+
+                if (verify_message()){
+                    var dataString = '&vstrChoice=' + route + '&vstrNames=' + names + '&vstrCell=' + cell + '&vstrEmail=' + email +
+                        '&vstrSubject=' + subject + '&vstrMessage=' + message;
+
+                    $.ajax({
+                        type: "post",
+                        url: "/contact",
+                        data: dataString,
+                        cache: false,
+                        success: function (html) {
+                            $('#FormResponseDiv').html(html)
+                        }
+                    });
+                }else{
+                    response = document.getElementById("FormResponseDiv");
+                    response.innerHTML = `<strong> Please complete all fields before you can send us a message</strong>`
+                }
 });
+
+
+
+
 
 //Contact Form Handler
 thisContactFormButt.addEventListener("click",function () {
@@ -70,4 +110,4 @@ thisAddressButt.addEventListener("click", function () {
                         $('#ContactINFDIV').html(Response)
                     }
                 })
-            });
+});

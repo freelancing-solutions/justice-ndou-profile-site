@@ -1,9 +1,10 @@
 
-
 handlers:
 
 - url: /services
+  secure: always
   script: services.app
 
 - url: /services/.*
+  secure: always
   script: services.app  

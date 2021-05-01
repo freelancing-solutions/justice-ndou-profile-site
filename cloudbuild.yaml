@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/justice-ndou-apps/app-engine:main', '.' ]
+images:
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/justice-ndou-apps/app-engine:main:tag1'

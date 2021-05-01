@@ -9,12 +9,12 @@ function initBoard() {
 	}
 }
 
-function getBoardCanevasContext() { 
+function getBoardCanvasContext() { 
 	return BOARD_CANVAS_CONTEXT;
 }
 
 function drawBoard(alternate) { 
-	var ctx = getBoardCanevasContext();
+	var ctx = getBoardCanvasContext();
 	
 	if (alternate && alternate === true) { 
 		ctx.strokeStyle = "#fff";
@@ -338,7 +338,7 @@ function drawBoard(alternate) {
 }
 
 function drawBoardDoor() { 
-	var ctx = getBoardCanevasContext();
+	var ctx = getBoardCanvasContext();
 	
 	ctx.strokeStyle = "white";
 	ctx.lineWidth = "5";
@@ -351,7 +351,7 @@ function drawBoardDoor() {
 	ctx.closePath();
 }
 function eraseBoardDoor() { 
-	var ctx = getBoardCanevasContext();
+	var ctx = getBoardCanvasContext();
 	//ctx.translate(FRUITS_POSITION_X - (FRUITS_SIZE / 2), FRUITS_POSITION_Y - (FRUITS_SIZE / 2));
 	//ctx.save();
 	//ctx.globalCompositeOperation = "destination-out";

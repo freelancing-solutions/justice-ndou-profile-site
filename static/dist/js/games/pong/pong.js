@@ -2,8 +2,8 @@
 
 
 
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
 
 
 let ball = {
@@ -17,7 +17,7 @@ let ball = {
     pi: Math.PI * 2,
     score: 0,
     player: "joe",
-}
+};
 let mypi = Math.PI * 2;
 
 let paddle = {
@@ -29,7 +29,7 @@ let paddle = {
     rightKeyPressed: false,
     leftKeyPressed: false,
     pdx: 7,
-}
+};
 
 let bullets = {
     radius: 10,
@@ -43,12 +43,12 @@ let bullets = {
     dx:4,
     dy:-4,
     pi: Math.PI*2,
-}
+};
 
 let fame = {
     score: 0,
     gameNumber:0,
-}
+};
 
 high_scores = [];
 

@@ -1,4 +1,4 @@
-
+/**
 let myHeaders = new Headers();
 document.getElementById('strangeattractorsid').addEventListener("click", function (ev) {
    console.log(ev);
@@ -28,3 +28,4 @@ document.getElementById('strangeattractorsid').addEventListener("click", functio
    })
 
 });
+ **/

@@ -1,7 +1,7 @@
-
+ 
   // Initialize Firebase
 try{
-var config =
+let config =
 {
     apiKey: "AIzaSyAjcO6wmvJ29XNZrw50hFRLyXzkpN6GHL0",
     authDomain: "justice-ndou.firebaseapp.com",
@@ -29,60 +29,63 @@ function initApp() {
     // [END_EXCLUDE]
     if (user) {
       // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      var providerData = user.providerData;
+      let displayName = user.displayName;
+      let email = user.email;
+      let emailVerified = user.emailVerified;
+      let photoURL = user.photoURL;
+      let isAnonymous = user.isAnonymous;
+      let uid = user.uid;
+      let providerData = user.providerData;
       // [START_EXCLUDE]
       document.getElementById('strSideUserImageID').src =photoURL;
       document.getElementById('strSideUserNameID').textContent =displayName;
 
       if (!emailVerified) {
-          var vstrChoice = 0;
-          var dataString = "&vstrChoice=" + vstrChoice;
-          $.ajax({
-              type:"post",
-              url: "/login",
-              data: dataString,
-              cache: false,
-              success: function (SideBar) {
-                  $('#SideBarMenu').html(SideBar);
-              }
-          })
+          let route = 'email-not-verified';
+          let mydata = "&route=" + route;
+          let myInit = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    mode: 'cors', credentials: 'same-origin',
+                    body: mydata,
+                    cache: 'no-cache'
+          };
+          let myrequest = new Request('/login', myInit);
+          let formresponse = document.getElementById('SideBarMenu');
+          myFetch(myrequest,formresponse);
       }else
           {
-          var vstrChoice = 0;
-          var dataString = "&vstrChoice=" + vstrChoice;
-          $.ajax({
-              type:"post",
-              url: "/login",
-              data: dataString,
-              cache: false,
-              success: function (SideBar) {
-                  $('#SideBarMenu').html(SideBar);
-              }
-          })
+          let route = 'email-verified';
+          let mydata = "&route=" + route;
+          let myInit = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    mode: 'cors', credentials: 'same-origin',
+                    body: mydata,
+                    cache: 'no-cache'
+          };
+          let myrequest = new Request('/login', myInit);
+          let formresponse = document.getElementById('SideBarMenu');
+          myFetch(myrequest,formresponse);
+
           }
       // [END_EXCLUDE]
     } else
         {
       // User is signed out.
-          var vstrChoice = 1;
-          var dataString = "&vstrChoice=" + vstrChoice;
-          $.ajax({
-              type:"post",
-              url: "/login",
-              data: dataString,
-              cache: false,
-              success: function (SideBar) {
-                  $('#SideBarMenu').html(SideBar);
-              }
-          })
+          let route = 'user-not-loggedin';
+          let mydata = "&route=" + route;
+          let myInit = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    mode: 'cors', credentials: 'same-origin',
+                    body: mydata,
+                    cache: 'no-cache'
+          };
+          let myrequest = new Request('/login', myInit);
+          let formresponse = document.getElementById('SideBarMenu');
+          myFetch(myrequest,formresponse);
     }
   });
 }
-
 initApp();

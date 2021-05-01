@@ -32,9 +32,19 @@ template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd()))
 
 from accounts import Accounts
 
-this_topics = '"CyberAttacks" OR "Hacking Tools" OR "Linux" OR "Kali Linux" OR "Hacking" OR "Penetration Testing Algorithms" OR "Botnets" OR "Botnet Mining" OR  "Hackers" OR "Penetration Testing" OR "DDOS" OR "Networking" OR "State Sponsored Hacking" OR "Maths" OR "Mathematics in Programming" OR "Mathematics" OR "Numerical Algorithms" OR "Graph Theory"  OR "Cryptography" OR "Numerical Analysis" OR "Theory of Everything" OR "Number Theory" OR "Combinatorials" OR "Programming" OR "Python Algorithms" OR "Algorithms" OR "AI Algorithms" OR "Advanced Algorithms"  OR "Cryptographic Algorithms" OR "Javascript" OR "Python27" OR "HTML5" OR "CSS3" OR "Jquery" OR "Jinja2" OR "Jinja-Templating" OR "Google App Engine" OR "Google App Engine" OR "Physics" OR "Nanotechnolodgy" OR "Space Exploration" OR "Advanced Physics" OR "Astronomy" OR "Mechanical Engineering" OR "Chemical Engineering" OR "Biotech"'
+this_topics = ["CyberAttacks","Hacking Tools","Linux","Kali Linux","Hacking","Hackers","Penetration Testing","Algorithms","Botnets",
+               "Crypto Mining","New Crypto Coins","Crypto Coins","DDOS","Networking","State Sponsored Hacking","State Sponsored Malware",
+               "Mathematics","Mathematics in Programing","Numerical Algorithms","Graph Theory","Cryptography",
+               "Numerical Analysis","Signal Processing","Fourier Transforms","Laplace Transforms","Combinatorials",
+               "Theory of Everything", "Quantum Mechanics", "Python", "Programming", "Algorithms", "Google App Engine","Javascript", "Angular", "React", "Typescript","HTML5",
+               "CSS3","Jquery","Server Side Rendering","NODEJS","NODE","NPM","Jinja2","Jinja Templating",
+               "Physics","Nanotechnolodgy","Space Exploration","SpaceX","Advanced Physics","Moon","Mars","Astronomy",
+               "Astrophysics","Chemical Engineering"]
+
 this_page_size = 50
-apiKey = '3b2be7ef781441f4bde537854ffff2bf'
+
+apiKey = '41e896a0a1c94b61903408fae1a49471'
+import json
 
 
 def convert_datestring_to_datetime(date_string):
@@ -128,11 +138,48 @@ class Interests(ndb.Expando):
         except Exception as e:
             raise e 
 
-class Articles (ndb.Expando):    
+class Articles (ndb.Expando):
+
+    article_reference = ndb.StringProperty()
+    topic = ndb.StringProperty()
     url = ndb.StringProperty()
     title = ndb.StringProperty()
     urlToImage = ndb.StringProperty()
     description = ndb.StringProperty()
+    this_date = ndb.DateProperty(auto_now_add=True)
+
+
+
+    def write_topic(self,topic):
+        try:
+            if topic != None:
+                self.topic = topic
+                return True
+            else:
+                return False
+
+        except:
+            return False
+
+    def create_reference(self):
+        import random,string
+        try:
+            reference = ""
+            for i in range(256):
+                reference += random.SystemRandom().choice(string.digits + string.ascii_lowercase)
+            return reference
+        except:
+            return ""
+
+    def write_reference(self,ref):
+        try:
+            if ref != "":
+                self.article_reference = ref
+                return True
+            else:
+                return False
+        except:
+            return False
 
     def write_url(self,url):
         try:
@@ -164,8 +211,6 @@ class Articles (ndb.Expando):
                 return True
             else:
                 return False
-            
-
         except Exception as e:
             raise e
     
@@ -186,31 +231,93 @@ class Articles (ndb.Expando):
         
         """
         try:
-            #newsapi = NewsApiClient(api_key='3b2be7ef781441f4bde537854ffff2bf')
+            import random
 
             articles_url = 'https://newsapi.org/v2/everything?q='
 
-            total = str(total)
-            total = total.strip()
             mydate = datetime.datetime.now()
-            
+
             this_date = str(mydate.year) + "-" + str(mydate.month) + "-" + str(mydate.day)
 
-            myarticles_url = articles_url + this_topics + "&pageSize=" + total + '&from=' + this_date + '&apiKey=' + apiKey
 
 
-            if (total.isdigit() and (int(total) <= this_page_size)):
+            myarticles_url = articles_url + random.choice(this_topics) + '&language=en' +  '&from=' + this_date + '&apiKey=' + apiKey
+
+            headers = {'Content-Type': 'text/html'}
+            result = urlfetch.fetch(url=myarticles_url, method=urlfetch.GET, headers=headers, validate_certificate=True)
+
+            try:
+                if result.status_code == 200:
+                    myjson = json.loads(result.content)
+                    logging.info("ARE WE THERE YET")
+                    logging.info(myjson)
+                    logging.info("WE ARE THERE")
+                    return myjson
+                else:
+                    return "{STATUS : " + str(result.status_code) + "}"
+            except Exception as e:
+                logging.info(e)
+                raise e
                 
-                all_articles = newsapi.get_everything(q='bitcoin')
+        except Exception as e:
+            logging.info(e)
+            return {"Message": "There was an error accessing NEWS API"}
 
-                logging.info(all_articles)
-                return all_articles
-                            
-            else:
-                return ""
+    def fetch_topic(self, topic):
+        """
+        """
+        try:
+            articles_url = 'https://newsapi.org/v2/everything?q='
+            mydate = datetime.datetime.now()
+            this_date = str(mydate.year) + "-" + str(mydate.month) + "-" + str(mydate.day)
+
+            myarticles_url = articles_url + topic + "&language=en" + "&from=" + this_date + "&apiKey=" + apiKey
+
+            headers = {'Content-Type': 'text/html'}
+            result = urlfetch.fetch(url=myarticles_url, method=urlfetch.GET, headers=headers, validate_certificate=True)
+
+            try:
+                if result.status_code == 200:
+                    myjson = json.loads(result.content)
+                    logging.info("ARE WE THERE YET")
+                    logging.info(myjson)
+                    logging.info("WE ARE THERE")
+                    return myjson
+                else:
+                    return ""
+            except Exception as e:
+                logging.info(e.message)
+                pass
 
         except Exception as e:
+            logging.info(e)
+            return ""
+
+    def save_topics(self):
+        try:
+
+            for topic in this_topics:
+                json_results = self.fetch_topic(topic=topic)
+                if json_results != "":
+                    articles = json_results['articles']
+
+                    this_date = datetime.datetime.now()
+                    this_date = this_date.date()
+
+                    for article in articles:
+                        self.write_url(url=article['url'])
+                        self.write_title(title=article['title'])
+                        self.write_urlToImage(urlToImage=article['urlToImage'])
+                        self.write_description(description=article['description'])
+                        self.write_reference(ref=self.create_reference())
+                        self.put()
+
+                    logging.info("SAVED TOPIC : " + topic)
+                else:
+                    pass
+        except Exception as e:
             raise e
+
 
 class Posts(ndb.Expando):
     """
@@ -343,6 +450,7 @@ class MainRouterHandler(webapp2.RequestHandler):
     def RouteSitemap(self):
         #TODO- Consider creating a dynamic sitemap by actually crawling my site and then outputting the sitemap here
         #TODO- i think i use to have a function to do this coupled with thoth
+
         template = template_env.get_template('templates/sitemap/sitemap.xml')
         context = {}
         self.response.headers["Content-Type"] = 'text/xml'
@@ -355,17 +463,21 @@ class MainRouterHandler(webapp2.RequestHandler):
         self.response.write(template.render(context))
 
     def RouteHome(self):
-        #this_articles = Articles()
-        
-        #articles = this_articles.fetch_articles(total=43)
+        import random
+        this_articles = Articles()
+        #this_articles.save_topics()
+
+        topic = random.choice(this_topics)
+        articles = this_articles.fetch_topic(topic=topic)
+
+        if articles != "":
+            articles = articles['articles']
 
         template = template_env.get_template('templates/index.html')
-        #context = {'articles':articles}
-        context = {}
+        context = {'articles':articles}
         self.response.write(template.render(context))
 
     def RouteLogin(self):
-    
         template = template_env.get_template('templates/authentication/login.html')
         context = {}
         self.response.write(template.render(context))
@@ -395,10 +507,53 @@ class MainRouterHandler(webapp2.RequestHandler):
         context = {}
         self.response.write(template.render(context))
 
-    def RouteDashboard(self):
-        template = template_env.get_template("templates/dashboard/dashboard.html")
+    def RouteStrange(self):
+        template = template_env.get_template("templates/algorithms/strange/strange.html")
         context = {}
         self.response.write(template.render(context))
+
+    def RoutePerlin(self):
+        template = template_env.get_template("templates/algorithms/perlin/perlin.html")
+        context = {}
+        self.response.write(template.render(context))
+
+    def RouteLife(self):
+        template = template_env.get_template("templates/algorithms/gameoflife/life.html")
+        context = {}
+        self.response.write(template.render(context))
+
+    def RouteMaze(self):
+        template = template_env.get_template("templates/algorithms/maze/maze.html")
+        context = {}
+        self.response.write(template.render(context))
+
+
+    def RoutePath(self):
+        template = template_env.get_template("templates/algorithms/pathfinder/path.html")
+        context = {}
+        self.response.write(template.render(context))
+
+
+    def RouteMatter(self):
+        template = template_env.get_template("templates/algorithms/matter/matter.html")
+        context = {}
+        self.response.write(template.render(context))
+
+
+    def RouteDashboard(self):
+
+        if users.is_current_user_admin():
+            logout_url = users.create_logout_url(dest_url='/')
+            # logout_url = ''
+            template = template_env.get_template("templates/dashboard/dashboard.html")
+            context = {'logout_url':logout_url}
+            self.response.write(template.render(context))
+        else:
+            login_url = users.create_login_url(dest_url='/dashboard')
+            template = template_env.get_template("templates/lockscreen.html")
+            context = {'login_url':login_url}
+            self.response.write(template.render(context))
+
     def RouteGames(self):
         template = template_env.get_template("templates/games/games.html")
         context = {}
@@ -439,8 +594,17 @@ class MainRouterHandler(webapp2.RequestHandler):
         template = template_env.get_template("templates/games/snake/snake.html")
         context = {}
         self.response.write(template.render(context))
+
+    def RoutePlinko(self):
+        template = template_env.get_template("templates/algorithms/plinko/plinko.html")
+        context = {}
+        self.response.write(template.render(context))
+
         
-        
+    def RouteMazeSolver(self):
+        template = template_env.get_template("templates/algorithms/mazepath/mazepath.html")
+        context = {}
+        self.response.write(template.render(context))
         
         
         
@@ -608,8 +772,6 @@ class MainRouterHandler(webapp2.RequestHandler):
                 this_interest.put()
                 self.response.write("Topic successfully created")
             
-                    
-
 
     def Route404(self):
         template = template_env.get_template('templates/404.html')
@@ -624,20 +786,26 @@ class MainRouterHandler(webapp2.RequestHandler):
 
 
 
-    def RouteLoginPost(self,vstrChoice):
-        from accounts import Accounts,Organization
+    def RouteLoginPost(self,route):
+        from accounts import Accounts
         #from firebase_admin import auth
 
-        if vstrChoice == "0":
+        if route == "email-not-verified":
             template = template_env.get_template('templates/authentication/loggedin.html')
             context = {}
             self.response.write(template.render(context))
-        elif vstrChoice == "1":
+
+        elif route == "email-verified":
+            template = template_env.get_template('templates/authentication/loggedin.html')
+            context = {}
+            self.response.write(template.render(context))
+
+        elif route == "user-not-loggedin":
             template = template_env.get_template('templates/authentication/loggedout.html')
             context = {}
             self.response.write(template.render(context))
 
-        elif vstrChoice == "2":
+        elif route == "2":
             vstrDisplayName = self.request.get('vstrDisplayName')
             vstrEmail = self.request.get('vstrEmail')
             vstremailVerified = self.request.get('vstremailVerified')
@@ -655,12 +823,6 @@ class MainRouterHandler(webapp2.RequestHandler):
             if len(thisAccountList) > 0:
                 thisAccount = thisAccountList[0]
                 thisAccount.writeEmail(strinput=vstrEmail)
-                findRequest = Organization.query(Organization.strOrganizationID == thisAccount.strOrganizationID)
-                thisOrgList = findRequest.fetch()
-                if len(thisOrgList) > 0:
-                    thisOrg = thisOrgList[0]
-                    thisOrg.writeUserID(strinput=vstrUserID)
-                    thisOrg.put()
 
             else:
                 findRequest = Accounts.query(Accounts.strEmail == vstrEmail)
@@ -668,12 +830,6 @@ class MainRouterHandler(webapp2.RequestHandler):
                 if len(thisAccountList) > 0:
                     thisAccount = thisAccountList[0]
                     thisAccount.writeUserID(strinput=vstrUserID)
-                    findRequest = Organization.query(Organization.strOrganizationID == thisAccount.strOrganizationID)
-                    thisOrgList = findRequest.fetch()
-                    if len(thisOrgList) > 0:
-                        thisOrg = thisOrgList[0]
-                        thisOrg.writeUserID(strinput=vstrUserID)
-                        thisOrg.put()
                 else:
                     thisAccount = Accounts()
                     thisAccount.writeUserID(strinput=vstrUserID)
@@ -733,6 +889,35 @@ class MainRouterHandler(webapp2.RequestHandler):
             elif ("blog" in strURLlist) or ("blog.html" in strURLlist):
                 self.RouteBlog()
 
+            elif ("strange" in strURLlist) and ("algorithms" in strURLlist):
+                self.RouteStrange()
+
+            elif ("perlin" in strURLlist) and ("algorithms" in strURLlist):
+                self.RoutePerlin()
+
+            elif ("matrix" in strURLlist) and ("algorithms" in strURLlist):
+                self.RouteMatrix()
+
+            elif ("gameoflife" in strURLlist) and ("algorithms" in strURLlist):
+                self.RouteLife()
+
+            elif ("maze" in strURLlist) and ("algorithms" in strURLlist):
+                self.RouteMaze()
+
+            elif ("path" in strURLlist) and ("algorithms" in strURLlist):
+                self.RoutePath()
+
+
+            elif ("matter" in strURLlist) and ("algorithms" in strURLlist):
+                self.RouteMatter()
+
+            elif ("plinko" in strURLlist) and ("algorithms" in strURLlist):
+                self.RoutePlinko()
+
+            elif ("mazesolver" in strURLlist) and ("algorithms" in strURLlist):
+                self.RouteMazeSolver()
+
+
             elif ("algorithms" in strURLlist) or ("algorithms.html" in strURLlist):
                 self.RouteAlgorithms()
 
@@ -764,8 +949,8 @@ class MainRouterHandler(webapp2.RequestHandler):
         strURLlist = URL.split("/")
         if len(strURLlist) == 4:
             if ("login" in strURLlist) or ("login.html" in strURLlist) or ("signin" in strURLlist) or ("signin.html" in strURLlist) or ("subscribe" in strURLlist) or ("subscribe.html" in strURLlist):
-                vstrChoice = self.request.get("vstrChoice")
-                self.RouteLoginPost(vstrChoice=vstrChoice)
+                route = self.request.get("route")
+                self.RouteLoginPost(route=route)
             elif ("games" in strURLlist):
                 route = self.request.get('route')
                 if route == "tetris":
@@ -781,6 +966,7 @@ class MainRouterHandler(webapp2.RequestHandler):
                 elif route == "matrix":
                     self.RouteMatrix()
 
+
             elif ("dashboard" in strURLlist):
                 route = self.request.get('route')
                 self.RouteDashboardPost(route=route)
@@ -789,7 +975,17 @@ class MainRouterHandler(webapp2.RequestHandler):
             pass
 
 
+class DashboardHandler(webapp2.RequestHandler):
+    def get(self):
+        template = template_env.get_template('templates/dashboard/dashboard.html')
+        context = {}
+        self.response.write(template.render(context))
+
+
+
 app = webapp2.WSGIApplication([
+    
+    
     ('.*', MainRouterHandler)
 
 ], debug=True)

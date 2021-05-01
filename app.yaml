@@ -22,24 +22,40 @@ handlers:
   upload: static/dist/js/serviceworker/sw.js
   expiration: 0m
 
-- url: /
-  script: main.app
+- url: /.well-known/acme-challenge/XMSlJdkaAW44F8cs6VcD6yOqDHfL3DJ21lUQ1-UNI6I
+  static_files: static/XMSlJdkaAW44F8cs6VcD6yOqDHfL3DJ21lUQ1-UNI6I
+  upload: static/XMSlJdkaAW44F8cs6VcD6yOqDHfL3DJ21lUQ1-UNI6I
+  expiration: 0m
 
-- url: /dashboard
+- url: /.well-known/acme-challenge/z9BAcry21AtW3vt4ePCct-_V53-ldlLV1wl3w7yt-Gc
+  static_files: static/z9BAcry21AtW3vt4ePCct-_V53-ldlLV1wl3w7yt-Gc
+  upload: static/z9BAcry21AtW3vt4ePCct-_V53-ldlLV1wl3w7yt-Gc
+  expiration: 0m
+
+- url: /.well-known/acme-challenge/zR-cK2MfSZ2iqXfbtuslXJI9_oeF2RN1rMPLW2S1HB8
+  static_files: static/zR-cK2MfSZ2iqXfbtuslXJI9_oeF2RN1rMPLW2S1HB8
+  upload: static/zR-cK2MfSZ2iqXfbtuslXJI9_oeF2RN1rMPLW2S1HB8
+  expiration: 0m
+
+
+- url: /
+  secure: always
   script: main.app
-  login: admin
 
 - url: .*
+  secure: always
   script: main.app
 
 libraries:
 - name: webapp2
   version: "2.5.2"
+
 - name: jinja2
   version: latest
-
+  
 - name: ssl
   version: "latest"
+
 inbound_services:
 - mail
 - warmup

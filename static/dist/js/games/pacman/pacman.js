@@ -1,27 +1,27 @@
-var PACMAN_DIRECTION = 3;
-var PACMAN_DIRECTION_TRY = -1;
-var PACMAN_DIRECTION_TRY_TIMER = null;
-var PACMAN_DIRECTION_TRY_CANCEL = 1000;
-var PACMAN_POSITION_X = 276;
-var PACMAN_POSITION_Y = 416;
-var PACMAN_POSITION_STEP = 2;
-var PACMAN_MOUNTH_STATE = 3;
-var PACMAN_MOUNTH_STATE_MAX = 6;
-var PACMAN_SIZE = 16;
-var PACMAN_MOVING = false;
-var PACMAN_MOVING_TIMER = -1;
-var PACMAN_MOVING_SPEED = 15;
-var PACMAN_CANVAS_CONTEXT = null;
-var PACMAN_EAT_GAP = 15;
-var PACMAN_GHOST_GAP = 20;
-var PACMAN_FRUITS_GAP = 15;
-var PACMAN_KILLING_TIMER = -1;
-var PACMAN_KILLING_SPEED = 70;
-var PACMAN_RETRY_SPEED = 2100;
-var PACMAN_DEAD = false;
+let PACMAN_DIRECTION = 3;
+let PACMAN_DIRECTION_TRY = -1;
+let PACMAN_DIRECTION_TRY_TIMER = null;
+let PACMAN_DIRECTION_TRY_CANCEL = 1000;
+let PACMAN_POSITION_X = 276;
+let PACMAN_POSITION_Y = 416;
+let PACMAN_POSITION_STEP = 2;
+let PACMAN_MOUNTH_STATE = 3;
+let PACMAN_MOUNTH_STATE_MAX = 6;
+let PACMAN_SIZE = 16;
+let PACMAN_MOVING = false;
+let PACMAN_MOVING_TIMER = -1;
+let PACMAN_MOVING_SPEED = 15;
+let PACMAN_CANVAS_CONTEXT = null;
+let PACMAN_EAT_GAP = 15;
+let PACMAN_GHOST_GAP = 20;
+let PACMAN_FRUITS_GAP = 15;
+let PACMAN_KILLING_TIMER = -1;
+let PACMAN_KILLING_SPEED = 70;
+let PACMAN_RETRY_SPEED = 2100;
+let PACMAN_DEAD = false;
 
 function initPacman() { 
-	var canvas = document.getElementById('canvas-pacman');
+	let canvas = document.getElementById('canvas-pacman');
 	canvas.setAttribute('width', '550');
 	canvas.setAttribute('height', '550');
 	if (canvas.getContext) { 
@@ -97,8 +97,8 @@ function movePacman(direction) {
 		PACMAN_MOVING_TIMER = setInterval('movePacman()', PACMAN_MOVING_SPEED);
 	}
 	
-	var directionTry = direction;
-	var quarterChangeDirection = false;
+	let directionTry = direction;
+	let quarterChangeDirection = false;
 	
 	if (!directionTry && PACMAN_DIRECTION_TRY != -1) { 
 		directionTry = PACMAN_DIRECTION_TRY;
@@ -132,7 +132,7 @@ function movePacman(direction) {
 				PACMAN_MOUNTH_STATE = 0; 
 			}
 						
-			var speedUp = 0;
+			let speedUp = 0;
 			if (quarterChangeDirection) { 
 				speedUp = 6;
 			}
@@ -172,8 +172,8 @@ function movePacman(direction) {
 
 function canMovePacman(direction) { 
 	
-	var positionX = PACMAN_POSITION_X;
-	var positionY = PACMAN_POSITION_Y;
+	let positionX = PACMAN_POSITION_X;
+	let positionY = PACMAN_POSITION_Y;
 	
 	if (positionX === 276 && positionY === 204 && direction === 2) return false;
 	
@@ -187,17 +187,17 @@ function canMovePacman(direction) {
 		positionY -= PACMAN_POSITION_STEP;
 	}
 	
-	for (var i = 0, imax = PATHS.length; i < imax; i ++) { 
+	for (let i = 0, imax = PATHS.length; i < imax; i ++) { 
 	
-		var p = PATHS[i];
-		var c = p.split("-");
-		var cx = c[0].split(",");
-		var cy = c[1].split(",");
+		let p = PATHS[i];
+		let c = p.split("-");
+		let cx = c[0].split(",");
+		let cy = c[1].split(",");
 	
-		var startX = cx[0];
-		var startY = cx[1];
-		var endX = cy[0];
-		var endY = cy[1];
+		let startX = cx[0];
+		let startY = cx[1];
+		let endX = cy[0];
+		let endY = cy[1];
 
 		if (positionX >= startX && positionX <= endX && positionY >= startY && positionY <= endY) { 
 			return true;
@@ -209,15 +209,15 @@ function canMovePacman(direction) {
 
 function drawPacman() { 
 
-	var ctx = getPacmanCanevasContext();
+	let ctx = getPacmanCanevasContext();
 	
 	ctx.fillStyle = "#fff200";
 	ctx.beginPath();
 	
-	var startAngle = 0;
-	var endAngle = 2 * Math.PI;
-	var lineToX = PACMAN_POSITION_X;
-	var lineToY = PACMAN_POSITION_Y;
+	let startAngle = 0;
+	let endAngle = 2 * Math.PI;
+	let lineToX = PACMAN_POSITION_X;
+	let lineToY = PACMAN_POSITION_Y;
 	if (PACMAN_DIRECTION === 1) { 
 		startAngle = (0.35 - (PACMAN_MOUNTH_STATE * 0.05)) * Math.PI;
 		endAngle = (1.65 + (PACMAN_MOUNTH_STATE * 0.05)) * Math.PI;
@@ -243,7 +243,7 @@ function drawPacman() {
 
 function erasePacman() { 
 
-	var ctx = getPacmanCanevasContext();
+	let ctx = getPacmanCanevasContext();
 	ctx.clearRect( (PACMAN_POSITION_X - 2) - PACMAN_SIZE, (PACMAN_POSITION_Y - 2) - PACMAN_SIZE, (PACMAN_SIZE * 2) + 5, (PACMAN_SIZE * 2) + 5);
 }
 
@@ -284,11 +284,11 @@ function testGhostsPacman() {
 
 }
 function testGhostPacman(ghost) { 
-	eval('var positionX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
-	eval('var positionY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
+	eval('let positionX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
+	eval('let positionY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
 		
 	if (positionX <= PACMAN_POSITION_X + PACMAN_GHOST_GAP && positionX >= PACMAN_POSITION_X - PACMAN_GHOST_GAP && positionY <= PACMAN_POSITION_Y + PACMAN_GHOST_GAP && positionY >= PACMAN_POSITION_Y - PACMAN_GHOST_GAP ) { 
-		eval('var state = GHOST_' + ghost.toUpperCase() + '_STATE');
+		eval('let state = GHOST_' + ghost.toUpperCase() + '_STATE');
 		if (state === 0) { 
 			killPacman();
 		} else if (state === 1) { 
@@ -306,20 +306,20 @@ function testFruitsPacman() {
 }
 function testBubblesPacman() { 
 	
-	var r = { x: PACMAN_POSITION_X - ( PACMAN_SIZE / 2 ), y: PACMAN_POSITION_Y - ( PACMAN_SIZE / 2 ) , width: ( PACMAN_SIZE * 2 ), height: ( PACMAN_SIZE * 2 ) };
+	let r = { x: PACMAN_POSITION_X - ( PACMAN_SIZE / 2 ), y: PACMAN_POSITION_Y - ( PACMAN_SIZE / 2 ) , width: ( PACMAN_SIZE * 2 ), height: ( PACMAN_SIZE * 2 ) };
 		
-	for (var i = 0, imax = BUBBLES_ARRAY.length; i < imax; i ++) { 
-		var bubble = BUBBLES_ARRAY[i];
+	for (let i = 0, imax = BUBBLES_ARRAY.length; i < imax; i ++) { 
+		let bubble = BUBBLES_ARRAY[i];
 		
-		var bubbleParams = bubble.split( ";" );
-		var testX = parseInt(bubbleParams[0].split( "," )[0]);
-		var testY = parseInt(bubbleParams[0].split( "," )[1]);
-		var p = { x: testX, y: testY };
+		let bubbleParams = bubble.split( ";" );
+		let testX = parseInt(bubbleParams[0].split( "," )[0]);
+		let testY = parseInt(bubbleParams[0].split( "," )[1]);
+		let p = { x: testX, y: testY };
 		
 		if ( isPointInRect( p, r ) ) { 
 			
 			if ( bubbleParams[4] === "0" ) { 
-				var type = bubbleParams[3];
+				let type = bubbleParams[3];
 							
 				eraseBubble( type, testX, testY );
 				BUBBLES_ARRAY[i] = bubble.substr( 0, bubble.length - 1 ) + "1"

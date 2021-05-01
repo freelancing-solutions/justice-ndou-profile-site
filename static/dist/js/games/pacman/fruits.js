@@ -1,40 +1,40 @@
-var FRUITS_CANVAS_CONTEXT = null;
-var LEVEL_FRUITS_CANVAS_CONTEXT = null;
-var FRUITS_SIZE = 30;
+let FRUITS_CANVAS_CONTEXT = null;
+let LEVEL_FRUITS_CANVAS_CONTEXT = null;
+let FRUITS_SIZE = 30;
 
-var FRUITS_POSITION_X = 276;
-var FRUITS_POSITION_Y = 310;
+let FRUITS_POSITION_X = 276;
+let FRUITS_POSITION_Y = 310;
 
-var FRUIT_MINIMUM_START = 15;
-var FRUIT_CANCEL_TIMER = null;
-var FRUIT_CANCEL_SPEED = 7500;
-var FRUIT = null;
+let FRUIT_MINIMUM_START = 15;
+let FRUIT_CANCEL_TIMER = null;
+let FRUIT_CANCEL_SPEED = 7500;
+let FRUIT = null;
 
 
 function initFruits() { 
-	var canvas = document.getElementById('canvas-fruits');
+	let canvas = document.getElementById('canvas-fruits');
 	canvas.setAttribute('width', '550');
 	canvas.setAttribute('height', '550');
 	if (canvas.getContext) { 
 		FRUITS_CANVAS_CONTEXT = canvas.getContext('2d');
 	}
 	
-	var levelCanvas = document.getElementById('canvas-level-fruits');
+	let levelCanvas = document.getElementById('canvas-level-fruits');
 	levelCanvas.setAttribute('width', '265');
 	levelCanvas.setAttribute('height', '30');
 	if (levelCanvas.getContext) { 
 		LEVEL_FRUITS_CANVAS_CONTEXT = levelCanvas.getContext('2d');
 	}
 	
-	var ctx = getLevelFruitsCanevasContext();
+	let ctx = getLevelFruitsCanevasContext();
 	ctx.clearRect(0, 0, 265, 30);
 	
-	var x = 245;
-	var y = 14;
-	var i = 0;
+	let x = 245;
+	let y = 14;
+	let i = 0;
 	
 	if (LEVEL > 7) { 
-		var l = LEVEL
+		let l = LEVEL
 		if (l > 13) l = 13;
 		i = -(l - 7);
 	}
@@ -102,7 +102,7 @@ function getLevelFruitsCanevasContext() {
 function eatFruit() { 
 	playEatFruitSound();
 	
-	var s = 0;
+	let s = 0;
 	if (FRUIT === "cherry")  s = 100;
 	else if (FRUIT === "strawberry")  s = 300;
 	else if (FRUIT === "orange")  s = 500;
@@ -129,7 +129,7 @@ function fruit() {
 }
 function oneFruit() { 
 	if ( FRUIT_CANCEL_TIMER === null ) { 
-		var ctx = getFruitsCanevasContext();
+		let ctx = getFruitsCanevasContext();
 		
 		if (LEVEL === 1) FRUIT = "cherry";
 		else if (LEVEL === 2) FRUIT = "strawberry";
@@ -153,7 +153,7 @@ function cancelFruit() {
 
 function eraseFruit() { 
 
-	var ctx = getFruitsCanevasContext();
+	let ctx = getFruitsCanevasContext();
 	//ctx.translate(FRUITS_POSITION_X - (FRUITS_SIZE / 2), FRUITS_POSITION_Y - (FRUITS_SIZE / 2));
 	//ctx.save();
 	//ctx.globalCompositeOperation = "destination-out";
@@ -359,7 +359,7 @@ function drawMelon(ctx, x, y, size) {
 	ctx.fill();
 	ctx.closePath();
 
-	var mod = size / 23;
+	let mod = size / 23;
 	ctx.beginPath();
 	ctx.fillStyle = "black";
 	ctx.moveTo(12 * mod, 9 * mod);
@@ -394,7 +394,7 @@ function drawApple(ctx, x, y, size) {
 	ctx.fill();
 	ctx.closePath();
 
-	var mod = size / 23;
+	let mod = size / 23;
 	ctx.strokeStyle = "#24da1c";
 	ctx.lineWidth = 2;
 	ctx.beginPath();
@@ -437,7 +437,7 @@ function drawOrange(ctx, x, y, size) {
 	ctx.fill();
 	ctx.closePath();
 
-	var mod = size / 23;
+	let mod = size / 23;
 	ctx.strokeStyle = "#24da1c";
 	ctx.lineWidth = 2.5;
 	ctx.beginPath();
@@ -482,7 +482,7 @@ function drawStrawberry(ctx, x, y, size) {
 	ctx.beginPath();
 	ctx.fillStyle = "#24DA1D";
 
-	var mod = size / 23;
+	let mod = size / 23;
 	ctx.moveTo(6 * mod, 2 * mod);
 	ctx.lineTo(1 * mod, 8 * mod);
 	ctx.lineTo(6 * mod, 6 * mod);

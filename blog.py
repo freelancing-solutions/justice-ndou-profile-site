@@ -44,13 +44,33 @@ class BlogHandler(webapp2.RequestHandler):
             context = {}
             self.response.write(template.render(context))
 
-            
+        elif this_url == "networking":
+            template = template_env.get_template('templates/justice-ndou/blog/categories/networking/networking.html')
+            context = {}
+            self.response.write(template.render(context))
+
+        elif this_url == "ai":
+            template = template_env.get_template('templates/justice-ndou/blog/categories/ai/ai.html')
+            context = {}
+            self.response.write(template.render(context))
+
+
+
+class TopicsHandler(webapp2.RequestHandler):
+    def get(self):
+        pass
+    def post(self):
+        pass
+    def put(self):
+        pass
+
 
 
 #TODO- consider methods of obtaining and storing old articles and then submitting them as secong pages indexed by dates
 
 app = webapp2.WSGIApplication([
     ('/blog/.*', BlogHandler),
+    ('/topics/.*', TopicsHandler)
 
 
 

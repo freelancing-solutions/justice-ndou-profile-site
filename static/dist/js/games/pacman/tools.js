@@ -7,7 +7,7 @@ function isPointInRect(point, rect) {
 }
 
 function Timer(callback, delay) {
-    var id, started, remaining = delay, running
+    let id, started, remaining = delay, running
 
     this.start = function() {
         running = true
@@ -60,7 +60,7 @@ function whatsYourProblem() {
 }
 
 CanvasRenderingContext2D.prototype.roundRect = function(sx, sy, ex, ey, r) {
-    var r2d = Math.PI/180;
+    let r2d = Math.PI/180;
     if( ( ex - sx ) - ( 2 * r ) < 0 ) { r = ( ( ex - sx ) / 2 ); } 
     if( ( ey - sy ) - ( 2 * r ) < 0 ) { r = ( ( ey - sy ) / 2 ); } 
     this.beginPath();

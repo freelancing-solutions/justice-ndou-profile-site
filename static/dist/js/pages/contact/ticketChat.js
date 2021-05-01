@@ -3,8 +3,6 @@
 var thisSendMessageButt = document.getElementById("SendMessageButt");
 
 thisSendMessageButt.addEventListener("click", function () {
-
-
                 var vstrChoice = 0;
                 var vstrComment = document.getElementById("strComment").value;
                 var vstrTicketID = document.getElementById("strTicketID").value;
@@ -25,7 +23,6 @@ thisSendMessageButt.addEventListener("click", function () {
             });
 
 function UpdateChat() {
-
                 var vstrChoice = 1;
                 var vstrTicketID = document.getElementById("strTicketID").value;
                 var vstrThreadID = document.getElementById("strThreadID").value;
