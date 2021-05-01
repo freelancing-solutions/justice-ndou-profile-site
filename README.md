@@ -1,8 +1,9 @@
-# justice ndou profile and portfolio web app
+## justice ndou profile and portfolio web app
 
-this web application is designed to showcase justice ndou professional career, and also as a way to showcase my portfolio as a programmer and web applications developer.
+### Please refer to this repo for [justice ndou profile site](https://github.com/freelancing-solutions/freelancing-profile) as this repository has been retired
 
-the site is live @ https://justicendou.site .
+
+The site is live @ https://justice-ndou.site .
 
 
 
