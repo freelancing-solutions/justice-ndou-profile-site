@@ -8,7 +8,7 @@ function my_youtube_channels(){
 
 
 
-function youtube_search(){
+async function youtube_search(){
 
     let self = this;
     this.topics = ["HDMI Over IP", "Networking", "Home Networking","Home Server Builds","Javascript","Jinja Templating","Google App Engine","Firebase","Firebase Functions",
@@ -38,11 +38,15 @@ function youtube_search(){
         cache: 'force-cache'
     };
 
-    this.get_yuotube_api_key = function(){
+    this.fetch_youtube_api = async function(){
         // get youtube api key from the backend
+        const api_key_request = new Request('/youtube-api-keys', this.init_get)
+        const response = await fetch(api_key_request)
+        const json_data = await response.json()
+        return json_data['youtube']
     };
 
-    this.apikey = "AIzaSyAURtCt8PWrfUIB07RkqM064anLCHd6sM0";
+    this.apikey = await this.fetch_youtube_api();
     this.part = "snippet";
     this.maxResults = 25;
     this.type = "video";

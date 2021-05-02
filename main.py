@@ -613,7 +613,7 @@ class MainRouterHandler(webapp2.RequestHandler):
 
         if route == "hireme":
             
-            find_hires = HireMe.query(HireMe.project_status <> "completed")
+            find_hires = HireMe.query(HireMe.project_status != "completed")
             this_hires_list = find_hires.fetch()
             
             template = template_env.get_template('templates/dashboard/hireme.html')
@@ -783,9 +783,6 @@ class MainRouterHandler(webapp2.RequestHandler):
         context = {}
         self.response.write(template.render(context))
 
-
-
-
     def RouteLoginPost(self,route):
         from accounts import Accounts
         #from firebase_admin import auth
@@ -851,6 +848,14 @@ class MainRouterHandler(webapp2.RequestHandler):
 
             #TODO - Refine this part
 
+    def route_keys(self, route):
+
+        if route == "youtube":
+            keys = {
+                "youtube": os.getenv('youtube')
+            }
+            self.response.headers['Content-Type'] = 'application/json'
+            return self.response.write(json.dump(keys))
 
     def get(self):
         """
@@ -907,7 +912,6 @@ class MainRouterHandler(webapp2.RequestHandler):
             elif ("path" in strURLlist) and ("algorithms" in strURLlist):
                 self.RoutePath()
 
-
             elif ("matter" in strURLlist) and ("algorithms" in strURLlist):
                 self.RouteMatter()
 
@@ -916,7 +920,6 @@ class MainRouterHandler(webapp2.RequestHandler):
 
             elif ("mazesolver" in strURLlist) and ("algorithms" in strURLlist):
                 self.RouteMazeSolver()
-
 
             elif ("algorithms" in strURLlist) or ("algorithms.html" in strURLlist):
                 self.RouteAlgorithms()
@@ -933,6 +936,8 @@ class MainRouterHandler(webapp2.RequestHandler):
 
             elif ("500" in strURLlist):
                 self.Route500()
+            elif ('youtube-api-keys' in strURLlist):
+                self.route_keys('youtube')
             else:
                 self.RouteHome()
         else:

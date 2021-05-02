@@ -71,3 +71,6 @@ error_handlers:
   file: 500.html
 - error_code: timeout
   file: 500.html
+
+env_variables:
+    youtube: "AIzaSyAURtCt8PWrfUIB07RkqM064anLCHd6sM0"
